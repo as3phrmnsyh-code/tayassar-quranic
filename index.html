@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tayassar Quranic | Bimbingan Belajar Al-Qur'an Online Interaktif</title>
+    <!-- Google Fonts: Playfair Display / Merriweather & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Merriweather"', 'serif'],
+                    },
+                    colors: {
+                        emeraldDark: '#114232',
+                        emeraldDeep: '#0F3D2E',
+                        mustard: '#D4A338',
+                        mustardBright: '#E5A93B',
+                        creamBg: '#F8F7F2',
+                        warmSand: '#DFCBB0',
+                        darkNavy: '#132238',
+                        tealDark: '#0E4D5C',
+                        cyanBright: '#14C8C8',
+                        terracotta: '#C86D3B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & utility animations */
+        body {
+            background-color: #F8F7F2;
+            color: #1E293B;
+            overflow-x: hidden;
+        }
+        .page-section {
+            display: none;
+            animation: fadeIn 0.35s ease-out;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-link.active {
+            color: #114232;
+            font-weight: 700;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background-color: #D4A338;
+            border-radius: 999px;
+        }
+        /* Subtle card hover lift */
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(17, 66, 50, 0.14);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-mustard selection:text-white">
+
+    <!-- ==================== HEADER / NAVBAR (RAMPING & PRESISI DI HP ANDROID) ==================== -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+            <div class="flex flex-nowrap justify-between items-center h-14 sm:h-16 lg:h-20 gap-2">
+                <!-- Logo Rub el Hizb + Tayassar Quranic -->
+                <a href="#beranda" onclick="navigateTo('beranda')" class="flex items-center gap-2 sm:gap-3 group focus:outline-none min-w-0 shrink">
+                    <div class="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11 flex-shrink-0 transition-transform duration-300 group-hover:rotate-12">
+                        <!-- Custom SVG Rub el Hizb dengan Al-Qur'an Terbuka -->
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Kotak 1 (0 deg) -->
+                            <rect x="20" y="20" width="60" height="60" rx="4" fill="#114232" stroke="#D4A338" stroke-width="4.5"/>
+                            <!-- Kotak 2 (45 deg) -->
+                            <rect x="20" y="20" width="60" height="60" rx="4" fill="#114232" stroke="#D4A338" stroke-width="4.5" transform="rotate(45 50 50)"/>
+                            <!-- Lingkaran Dalam -->
+                            <circle cx="50" cy="50" r="24" fill="#0F3D2E" stroke="#D4A338" stroke-width="2"/>
+                            <!-- Ikon Buku Al-Qur'an Terbuka -->
+                            <path d="M32 42 C38 39, 46 41, 50 45 C54 41, 62 39, 68 42 L68 60 C62 57, 54 59, 50 63 C46 59, 38 57, 32 60 Z" fill="#FFFFFF"/>
+                            <line x1="50" y1="45" x2="50" y2="63" stroke="#D4A338" stroke-width="2"/>
+                            <!-- Penyangga Rehal -->
+                            <path d="M40 66 L50 61 L60 66" fill="none" stroke="#D4A338" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col min-w-0">
+                        <span class="font-serif font-bold text-base sm:text-xl lg:text-2xl text-emeraldDark tracking-tight leading-none whitespace-nowrap">Tayassar Quranic</span>
+                        <span class="hidden sm:block text-[10px] lg:text-[11px] font-medium text-stone-500 tracking-wider uppercase mt-1">Bimbingan Qur'an Online</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-600">
+                    <button onclick="navigateTo('beranda')" data-nav="beranda" class="nav-link active hover:text-emeraldDark transition py-1">Beranda</button>
+                    <button onclick="navigateTo('tentang')" data-nav="tentang" class="nav-link hover:text-emeraldDark transition py-1">Tentang Kami</button>
+                    <button onclick="navigateTo('anak')" data-nav="anak" class="nav-link hover:text-emeraldDark transition py-1">Kelas Anak-Anak</button>
+                    <button onclick="navigateTo('dewasa')" data-nav="dewasa" class="nav-link hover:text-emeraldDark transition py-1">Kelas Dewasa</button>
+                    <button onclick="navigateTo('dokumentasi')" data-nav="dokumentasi" class="nav-link hover:text-emeraldDark transition py-1">Dokumentasi</button>
+                    <button onclick="navigateToKurikulum()" class="hover:text-emeraldDark transition py-1">Kurikulum</button>
+                </nav>
+
+                <!-- CTA Button Ramping & Mobile Hamburger -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <button onclick="openRegisterModal()" class="bg-emeraldDark hover:bg-emeraldDeep text-white text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 rounded-lg shadow-xs hover:shadow transition whitespace-nowrap active:scale-95">
+                        Daftar Kelas
+                    </button>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu Navigasi" class="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-emeraldDark hover:bg-stone-100 border border-stone-200/80 focus:outline-none">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Ringkas & Rapi) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-stone-200 px-3.5 py-2.5 space-y-1 shadow-lg">
+            <button onclick="navigateTo('beranda'); toggleMobileMenu()" data-nav-mobile="beranda" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-emeraldDark bg-emeraldDark/5">Beranda</button>
+            <button onclick="navigateTo('tentang'); toggleMobileMenu()" data-nav-mobile="tentang" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-100">Tentang Kami / Profil</button>
+            <button onclick="navigateTo('anak'); toggleMobileMenu()" data-nav-mobile="anak" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-100">Kelas Anak-Anak</button>
+            <button onclick="navigateTo('dewasa'); toggleMobileMenu()" data-nav-mobile="dewasa" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-100">Kelas Dewasa</button>
+            <button onclick="navigateTo('dokumentasi'); toggleMobileMenu()" data-nav-mobile="dokumentasi" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-100">Dokumentasi &amp; Portofolio</button>
+            <button onclick="navigateToKurikulum(); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-100">Kurikulum 5 Pilar</button>
+        </div>
+    </header>
+
+    <!-- ==================== HALAMAN 1: BERANDA ==================== -->
+    <main id="page-beranda" class="page-section active">
+        
+        <!-- 1. Hero Section -->
+        <section class="relative pt-10 pb-16 lg:pt-16 lg:pb-24 bg-creamBg overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    <!-- Kiri: Teks & CTA -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-[#EFECE3] border border-[#E2DCCB] text-emeraldDark text-xs font-bold tracking-wider uppercase px-4 py-1.5 rounded-full">
+                            <span class="w-2 h-2 rounded-full bg-mustard"></span>
+                            BIMBINGAN AL-QUR'AN ONLINE INTERAKTIF
+                        </div>
+                        <h1 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-bold text-emeraldDark leading-[1.2]">
+                            Langkah Mudah Memahami &amp; Mencintai Al-Qur'an dari Rumah
+                        </h1>
+                        <p class="text-stone-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Bimbingan belajar Al-Qur'an terstruktur untuk anak, remaja, dan dewasa. Pendampingan intensif bersama pengajar bersanad dan ramah.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+                            <button onclick="openPlacementModal()" class="bg-emeraldDark hover:bg-emeraldDeep text-white text-sm sm:text-base font-semibold px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2.5 active:scale-95">
+                                <i class="fa-solid fa-clipboard-check text-mustardBright"></i>
+                                Mulai Placement Test
+                            </button>
+                            <!-- [EDIT WHATSAPP] Ganti nomor 6285134608556 di bawah ini jika diperlukan -->
+                            <a href="https://wa.me/6285134608556?text=Assalamu'alaikum%20Admin%20Tayassar%20Quranic,%20saya%20ingin%20konsultasi%20program%20belajar%20Al-Qur'an." target="_blank" rel="noopener" class="bg-white hover:bg-stone-50 text-emeraldDark border-2 border-emeraldDark text-sm sm:text-base font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl transition flex items-center gap-2 active:scale-95">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i>
+                                Konsultasi Admin
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: Kartu Gambar Hero Berbingkai Hijau Tua -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-emeraldDark p-3.5 sm:p-4 rounded-2xl shadow-xl border-2 border-mustard/60">
+                            <div class="relative rounded-xl overflow-hidden bg-stone-200 aspect-[4/3]">
+                                <!-- [EDIT GAMBAR 1: HERO BERANDA] Ganti atribut src="..." dengan link foto atau nama file lokal Anda -->
+                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/114232/FFFFFF?text=Bimbingan+Al-Quran+Online';"
+                                     alt="Ustadzah mengajar Al-Qur'an online melalui laptop" 
+                                     class="w-full h-full object-cover">
+                                <div class="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live 1-on-1 / Grup
+                                </div>
+                            </div>
+                            <div class="pt-3.5 pb-1 text-center">
+                                <p class="text-white/95 text-xs sm:text-sm font-medium tracking-wide">
+                                    Media Belajar: <span class="text-mustardBright font-semibold">Zoom Meeting • Google Meet • WhatsApp Video</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Statistik / Highlight Bar (4 Kolom) -->
+                <div class="mt-12 bg-white rounded-2xl shadow-sm border border-stone-200/80 p-6 sm:p-8">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 lg:divide-x divide-stone-200">
+                        <div class="text-center pt-2 sm:pt-0">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emeraldDark">5 Pilar</div>
+                            <div class="text-xs sm:text-sm text-stone-500 mt-1">Kurikulum Terpadu &amp; Sistematis</div>
+                        </div>
+                        <div class="text-center pt-4 sm:pt-0">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emeraldDark">1-on-1 / Grup</div>
+                            <div class="text-xs sm:text-sm text-stone-500 mt-1">Pilihan Kelas Privat &amp; Kelompok</div>
+                        </div>
+                        <div class="text-center pt-4 lg:pt-0">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emeraldDark">Per 3 Bulan</div>
+                            <div class="text-xs sm:text-sm text-stone-500 mt-1">Evaluasi Ujian Kenaikan Level</div>
+                        </div>
+                        <div class="text-center pt-4 lg:pt-0">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emeraldDark">Rapor Digital</div>
+                            <div class="text-xs sm:text-sm text-stone-500 mt-1">Laporan Perkembangan Orang Tua</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Keunggulan Lembaga -->
+        <section class="py-16 lg:py-20 bg-[#F1EFE9]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block bg-white text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full shadow-xs border border-stone-200">
+                        KEUNGGULAN LEMBAGA
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-emeraldDark mt-3">
+                        Mengapa Belajar di Tayassar Quranic?
+                    </h2>
+                    <p class="text-stone-600 text-sm sm:text-base mt-3">
+                        Dirancang khusus agar proses belajar Al-Qur'an terasa nyaman, terarah, dan sesuai dengan kemampuan setiap santri.
+                    </p>
+                </div>
+
+                <!-- Grid 2x2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 01 Putih -->
+                    <div class="bg-white rounded-2xl p-7 sm:p-8 shadow-sm border border-stone-200/70 hover-lift">
+                        <div class="w-8 h-1 bg-mustard rounded-full mb-4"></div>
+                        <h3 class="text-lg sm:text-xl font-bold text-emeraldDark mb-3">
+                            <span class="text-mustard font-extrabold mr-1">01 |</span> Pendampingan Privat &amp; Kelompok
+                        </h3>
+                        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                            Tersedia opsi kelas privat 1-on-1 untuk fokus maksimal maupun kelompok kecil yang interaktif dan suportif.
+                        </p>
+                    </div>
+
+                    <!-- 02 Putih -->
+                    <div class="bg-white rounded-2xl p-7 sm:p-8 shadow-sm border border-stone-200/70 hover-lift">
+                        <div class="w-8 h-1 bg-mustard rounded-full mb-4"></div>
+                        <h3 class="text-lg sm:text-xl font-bold text-emeraldDark mb-3">
+                            <span class="text-mustard font-extrabold mr-1">02 |</span> Jadwal Belajar Fleksibel
+                        </h3>
+                        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                            Waktu belajar dapat disesuaikan dengan kesibukan sekolah atau pekerjaan, dengan durasi efektif 45–60 menit per sesi.
+                        </p>
+                    </div>
+
+                    <!-- 03 Hijau Tua -->
+                    <div class="bg-emeraldDark text-white rounded-2xl p-7 sm:p-8 shadow-md hover-lift">
+                        <div class="w-8 h-1 bg-mustardBright rounded-full mb-4"></div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-3">
+                            <span class="text-mustardBright font-extrabold mr-1">03 |</span> Kurikulum 5 Pilar Terpadu
+                        </h3>
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+                            Mencakup Metode Asasi, Tajwid Praktis, Tahfizul Qur'an, Fiqih Praktis harian, serta pembiasaan Murattal.
+                        </p>
+                    </div>
+
+                    <!-- 04 Hijau Tua -->
+                    <div class="bg-emeraldDark text-white rounded-2xl p-7 sm:p-8 shadow-md hover-lift">
+                        <div class="w-8 h-1 bg-mustardBright rounded-full mb-4"></div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-3">
+                            <span class="text-mustardBright font-extrabold mr-1">04 |</span> Mulai dari Nol hingga Mahir
+                        </h3>
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+                            Diawali Placement Test untuk memetakan level santri sehingga materi tepat sasaran tanpa tekanan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Sistem Evaluasi & Transparansi Belajar -->
+        <section class="py-16 lg:py-20 bg-creamBg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <!-- 2 Kartu Hijau Tua -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-emeraldDark text-white rounded-2xl p-7 sm:p-8 shadow-md hover-lift">
+                        <div class="flex items-center gap-3.5 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-mustard text-emeraldDark flex items-center justify-center font-bold shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold">Penilaian Mingguan &amp; Rapor Digital</h3>
+                        </div>
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+                            Orang tua dapat memantau perkembangan bacaan, hafalan, dan adab beribadah santri secara berkala melalui laporan digital yang transparan.
+                        </p>
+                    </div>
+
+                    <div class="bg-emeraldDark text-white rounded-2xl p-7 sm:p-8 shadow-md hover-lift">
+                        <div class="flex items-center gap-3.5 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-mustard text-emeraldDark flex items-center justify-center font-bold shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold">Ujian Kenaikan Level (UKL) Berkala</h3>
+                        </div>
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+                            Evaluasi terstruktur setiap 3 bulan sekali untuk memastikan santri benar-benar menguasai materi sebelum melangkah ke jenjang berikutnya.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card Split: Transparansi Belajar -->
+                <div class="bg-white rounded-2xl p-7 sm:p-10 shadow-sm border border-stone-200/80 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-6 space-y-4">
+                        <span class="inline-block bg-[#EFECE3] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full">
+                            TRANSPARANSI BELAJAR
+                        </span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark leading-snug">
+                            Pantau Progres Belajar Santri Secara Terstruktur
+                        </h3>
+                        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                            Setiap capaian hafalan surat, perbaikan makhraj, hingga praktik ibadah tercatat rapi sehingga orang tua terlibat aktif mendampingi.
+                        </p>
+                    </div>
+
+                    <!-- Widget Ringkasan Capaian Santri -->
+                    <div class="lg:col-span-6">
+                        <div class="border-2 border-emeraldDark/30 bg-[#FAF9F5] rounded-2xl p-5 sm:p-6">
+                            <div class="text-center text-xs font-extrabold tracking-widest text-emeraldDark uppercase mb-4">
+                                RINGKASAN CAPAIAN SANTRI
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-white px-4 py-3 rounded-xl border border-stone-200/70 flex justify-between items-center shadow-2xs">
+                                    <span class="text-sm font-medium text-stone-700">Kelancaran Tilawah &amp; Tajwid</span>
+                                    <span class="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Sangat Baik</span>
+                                </div>
+                                <div class="bg-white px-4 py-3 rounded-xl border border-stone-200/70 flex justify-between items-center shadow-2xs">
+                                    <span class="text-sm font-medium text-stone-700">Setoran Hafalan Juz 30</span>
+                                    <span class="text-xs sm:text-sm font-bold text-emeraldDark bg-amber-50 px-3 py-1 rounded-full border border-amber-200/60">14 Surat</span>
+                                </div>
+                                <div class="bg-white px-4 py-3 rounded-xl border border-stone-200/70 flex justify-between items-center shadow-2xs">
+                                    <span class="text-sm font-medium text-stone-700">Praktik Fiqih &amp; Adab Harian</span>
+                                    <span class="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Tuntas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Tenaga & Kurikulum (5 Pilar Utama) -->
+        <section id="beranda-kurikulum" class="py-16 lg:py-20 bg-[#F1EFE9]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block bg-white text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full border border-stone-200">
+                        TENAGA &amp; KURIKULUM
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-emeraldDark mt-3">
+                        Dibimbing Pengajar Kompeten dengan 5 Pilar Utama
+                    </h2>
+                    <p class="text-stone-600 text-sm sm:text-base mt-3">
+                        Pengajar ramah anak dan dewasa yang menguasai metode pembelajaran Al-Qur'an praktis serta pembinaan karakter Islami.
+                    </p>
+                </div>
+
+                <!-- 5 Kartu Kolom Sejajar -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-stone-200/70 hover-lift flex flex-col items-center">
+                        <span class="bg-[#EFECE3] text-emeraldDark text-[11px] font-bold px-3 py-1 rounded-md mb-4">Pilar 01</span>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Metode Asasi</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">Pengenalan huruf hijaiyah &amp; dasar membaca cepat.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-stone-200/70 hover-lift flex flex-col items-center">
+                        <span class="bg-[#EFECE3] text-emeraldDark text-[11px] font-bold px-3 py-1 rounded-md mb-4">Pilar 02</span>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Tajwid Praktis</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">Penerapan hukum bacaan &amp; makhraj secara tepat.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-stone-200/70 hover-lift flex flex-col items-center">
+                        <span class="bg-[#EFECE3] text-emeraldDark text-[11px] font-bold px-3 py-1 rounded-md mb-4">Pilar 03</span>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Tahfizul Qur'an</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">Program hafalan bertahap dengan muraja'ah rutin.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-stone-200/70 hover-lift flex flex-col items-center">
+                        <span class="bg-[#EFECE3] text-emeraldDark text-[11px] font-bold px-3 py-1 rounded-md mb-4">Pilar 04</span>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Fiqih Praktis</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">Bimbingan tata cara wudhu, shalat, &amp; doa harian.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-stone-200/70 hover-lift flex flex-col items-center sm:col-span-2 lg:col-span-1">
+                        <span class="bg-[#EFECE3] text-emeraldDark text-[11px] font-bold px-3 py-1 rounded-md mb-4">Pilar 05</span>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Murattal</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">Pembiasaan irama bacaan Al-Qur'an yang tartil.</p>
+                    </div>
+                </div>
+
+                <!-- Pilihan Jenjang Cepat -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div onclick="navigateTo('anak')" class="cursor-pointer bg-tealDark text-white rounded-2xl p-6 sm:p-7 flex items-center justify-between hover-lift group">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cyanBright">Program Spesial</span>
+                            <h4 class="text-xl font-bold mt-1">Kelas Privat Anak-Anak</h4>
+                            <p class="text-sm text-teal-100 mt-1">Metode seru, interaktif &amp; pembinaan ibadah harian.</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-full bg-white/10 group-hover:bg-cyanBright group-hover:text-tealDark flex items-center justify-center transition">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div onclick="navigateTo('dewasa')" class="cursor-pointer bg-white border-2 border-emeraldDark/20 text-emeraldDark rounded-2xl p-6 sm:p-7 flex items-center justify-between hover-lift group">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-terracotta">Program Spesial</span>
+                            <h4 class="text-xl font-bold mt-1">Kelas Privat Al-Qur'an Dewasa</h4>
+                            <p class="text-sm text-stone-600 mt-1">Perbaiki bacaan tanpa rasa sungkan sesuai ritme kerja.</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-full bg-emeraldDark/10 group-hover:bg-emeraldDark group-hover:text-white flex items-center justify-center transition">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Banner CTA Bawah -->
+        <section class="py-12 bg-creamBg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-emeraldDark rounded-2xl p-8 sm:p-10 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-b-4 border-mustard">
+                    <div class="space-y-2">
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+                            Siap Memulai Perjalanan Belajar Al-Qur'an?
+                        </h2>
+                        <!-- [EDIT WHATSAPP TEKS] Ubah tampilan nomor WhatsApp di bawah ini -->
+                        <p class="text-emerald-100/90 text-xs sm:text-sm leading-relaxed">
+                            WhatsApp: <span class="font-semibold text-white">0851-3460-8556</span> &nbsp;|&nbsp; 
+                            Instagram: <span class="font-semibold text-white">@tayassar_quranic</span> &nbsp;|&nbsp; 
+                            Web: <span class="font-semibold text-white">tayassarquranic.blogspot.com</span>
+                        </p>
+                    </div>
+                    <!-- [EDIT WHATSAPP LINK] Ubah nomor 6285134608556 di bawah ini -->
+                    <a href="https://wa.me/6285134608556?text=Assalamu'alaikum%20Admin%20Tayassar%20Quranic,%20saya%20siap%20memulai%20belajar%20Al-Qur'an." target="_blank" rel="noopener" class="bg-mustard hover:bg-mustardBright text-emeraldDark font-bold px-7 py-3.5 rounded-xl shadow-md transition whitespace-nowrap active:scale-95">
+                        Hubungi Admin Sekarang
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== HALAMAN 2: TENTANG KAMI / PROFIL LEMBAGA ==================== -->
+    <main id="page-tentang" class="page-section">
+        
+        <!-- 1. Header Profil Lembaga -->
+        <section class="bg-emeraldDark text-white border-l-8 border-mustard">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 items-stretch">
+                <div class="lg:col-span-8 p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-5">
+                    <span class="text-xs font-bold tracking-[0.2em] text-mustardBright uppercase">
+                        PROFIL LEMBAGA PENDIDIKAN AL-QUR'AN
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        TAYASSAR<br>QURANIC
+                    </h1>
+                    <p class="text-emerald-100 text-base sm:text-lg italic max-w-xl">
+                        Bimbingan Belajar Al-Qur'an Online yang Adaptif, Terstruktur, dan Interaktif
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-block bg-emeraldDeep border border-emerald-700/80 text-emerald-100 text-xs sm:text-sm px-4 py-2 rounded-lg">
+                            tayassarquranic.blogspot.com &nbsp;•&nbsp; @tayassar_quranic
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kanan: Emblem Logo Besar Rub el Hizb -->
+                <div class="lg:col-span-4 bg-white p-10 sm:p-14 flex items-center justify-center">
+                    <div class="w-44 h-44 sm:w-56 sm:h-56">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="18" y="18" width="64" height="64" rx="3" fill="#114232" stroke="#D4A338" stroke-width="4.5"/>
+                            <rect x="18" y="18" width="64" height="64" rx="3" fill="#114232" stroke="#D4A338" stroke-width="4.5" transform="rotate(45 50 50)"/>
+                            <circle cx="50" cy="50" r="25" fill="#0F3D2E" stroke="#D4A338" stroke-width="2"/>
+                            <path d="M31 41 C38 38, 46 40, 50 44 C54 40, 62 38, 69 41 L69 61 C62 58, 54 60, 50 64 C46 60, 38 58, 31 61 Z" fill="#FFFFFF"/>
+                            <line x1="50" y1="44" x2="50" y2="64" stroke="#D4A338" stroke-width="2"/>
+                            <path d="M39 67 L50 62 L61 67" fill="none" stroke="#D4A338" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 01 | Gambaran Umum - Tentang Tayassar Quranic -->
+        <section class="py-14 lg:py-20 bg-creamBg border-t-4 border-mustard">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-bold tracking-widest text-mustard uppercase">01 &nbsp;|&nbsp; GAMBARAN UMUM</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-1 mb-8">Tentang Tayassar Quranic</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Kartu Kiri -->
+                    <div class="lg:col-span-7 bg-white rounded-2xl p-7 sm:p-9 shadow-sm border-l-4 border-emeraldDark flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <h3 class="text-xl sm:text-2xl font-bold text-emeraldDark">
+                                Solusi Belajar Al-Qur'an Modern Langsung dari Rumah
+                            </h3>
+                            <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                                <strong>Tayassar Quranic</strong> adalah lembaga bimbingan belajar Al-Qur'an berbasis online yang dirancang khusus untuk memberikan kemudahan, kelancaran, dan pemahaman mendalam bagi setiap peserta didik dalam membaca serta mempelajari Al-Qur'an.
+                            </p>
+                            <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                                Dengan dukungan kurikulum yang disusun secara sistematis dan terukur, kami menghadirkan proses belajar mengajar yang efektif, interaktif, dan menyenangkan langsung dari rumah Anda.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 pt-7 mt-6 border-t border-stone-100 text-center">
+                            <span class="bg-[#EFECE3] text-emeraldDark text-[11px] sm:text-xs font-bold py-2 px-2 rounded-lg">BERBASIS ONLINE</span>
+                            <span class="bg-[#EFECE3] text-emeraldDark text-[11px] sm:text-xs font-bold py-2 px-2 rounded-lg">PRIVAT &amp; KELOMPOK</span>
+                            <span class="bg-[#EFECE3] text-emeraldDark text-[11px] sm:text-xs font-bold py-2 px-2 rounded-lg">ANAK &amp; DEWASA</span>
+                        </div>
+                    </div>
+
+                    <!-- 3 Kartu Kanan Bertumpuk -->
+                    <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+                        <div class="bg-emeraldDark text-white rounded-2xl p-6 shadow-sm">
+                            <h4 class="text-mustardBright font-extrabold text-sm tracking-wider uppercase mb-1.5">ADAPTIF</h4>
+                            <p class="text-emerald-100 text-xs sm:text-sm leading-relaxed">
+                                Menyesuaikan metode dan ritme belajar setiap santri dari tingkat dasar hingga mahir.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80">
+                            <h4 class="text-emeraldDark font-extrabold text-sm tracking-wider uppercase mb-1.5">TERSTRUKTUR</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                                Kurikulum berjenjang dengan target capaian dan evaluasi berkala yang jelas.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80">
+                            <h4 class="text-emeraldDark font-extrabold text-sm tracking-wider uppercase mb-1.5">INTERAKTIF</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                                Pendampingan tatap muka virtual secara langsung oleh pengajar ramah &amp; kompeten.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 02 | Arah Tujuan - Visi dan Misi Lembaga -->
+        <section class="py-14 lg:py-20 bg-[#F3F1EB] border-t-2 border-mustard/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-bold tracking-widest text-mustard uppercase">02 &nbsp;|&nbsp; ARAH TUJUAN</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-1 mb-8">Visi dan Misi Lembaga</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Kartu Kiri: Visi Kami -->
+                    <div class="lg:col-span-5 bg-emeraldDark text-white rounded-2xl p-8 sm:p-10 shadow-lg flex flex-col justify-center">
+                        <span class="text-mustardBright font-bold text-xs tracking-widest uppercase">VISI KAMI</span>
+                        <div class="w-12 h-1 bg-mustard rounded-full my-4"></div>
+                        <blockquote class="font-serif italic text-lg sm:text-xl leading-relaxed text-white/95">
+                            "Mencetak generasi yang gemar membaca Al-Qur'an secara tartil, benar sesuai kaidah tajwid, serta memiliki kemandirian ibadah yang berakhlak mulia sejak dini."
+                        </blockquote>
+                    </div>
+
+                    <!-- Kartu Kanan: Misi Utama -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <h3 class="text-xs font-extrabold tracking-widest text-emeraldDark uppercase mb-2">MISI UTAMA</h3>
+                        
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-stone-200/70 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-[#EFECE3] text-emeraldDark font-extrabold flex items-center justify-center flex-shrink-0">01</div>
+                            <div>
+                                <h4 class="font-bold text-emeraldDark text-base">Bimbingan Online Berkualitas</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm mt-1">Menyelenggarakan bimbingan Al-Qur'an yang adaptif, terstruktur, dan menyenangkan secara daring.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-stone-200/70 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-[#EFECE3] text-emeraldDark font-extrabold flex items-center justify-center flex-shrink-0">02</div>
+                            <div>
+                                <h4 class="font-bold text-emeraldDark text-base">Pembiasaan Hafalan Al-Qur'an</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm mt-1">Membiasakan santri menghafal surat-surat Al-Qur'an pilihan untuk diamalkan dalam shalat.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-5 shadow-sm border border-stone-200/70 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-[#EFECE3] text-emeraldDark font-extrabold flex items-center justify-center flex-shrink-0">03</div>
+                            <div>
+                                <h4 class="font-bold text-emeraldDark text-base">Pondasi Fiqih Ibadah Praktis</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm mt-1">Menanamkan pemahaman fiqih ibadah praktis sebagai fondasi pengamalan agama sejak dini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 03 | Kurikulum Inti - 5 Pilar Pembelajaran Utama -->
+        <section class="py-14 lg:py-20 bg-creamBg border-t-2 border-mustard/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-bold tracking-widest text-mustard uppercase">03 &nbsp;|&nbsp; KURIKULUM INTI</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-1">5 Pilar Pembelajaran Utama</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-2 mb-8">Pembelajaran berfokus pada lima pilar utama untuk memastikan santri tidak hanya lancar membaca, tetapi juga berkarakter Islami.</p>
+
+                <!-- 3 Atas -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80 hover-lift">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-mustard/20 text-emeraldDark font-extrabold text-sm flex items-center justify-center">1</span>
+                            <h3 class="font-bold text-emeraldDark text-lg">Metode Asasi</h3>
+                        </div>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Pengenalan huruf hijaiyah, harakat, tanda baca, dan kelancaran membaca dengan kurikulum level Dasar, Menengah, hingga Mahir.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80 hover-lift">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-mustard/20 text-emeraldDark font-extrabold text-sm flex items-center justify-center">2</span>
+                            <h3 class="font-bold text-emeraldDark text-lg">Tajwid Praktis</h3>
+                        </div>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Pemahaman hukum bacaan agar mampu membaca Al-Qur'an secara tartil dan sesuai kaidah.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80 hover-lift">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-mustard/20 text-emeraldDark font-extrabold text-sm flex items-center justify-center">3</span>
+                            <h3 class="font-bold text-emeraldDark text-lg">Tahfizul Qur'an</h3>
+                        </div>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Hafalan surat-surat pendek Juz 30 dan surat pilihan serta pembiasaan muroja'ah harian.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2 Bawah Centered -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80 hover-lift">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-mustard/20 text-emeraldDark font-extrabold text-sm flex items-center justify-center">4</span>
+                            <h3 class="font-bold text-emeraldDark text-lg">Fiqih Praktis</h3>
+                        </div>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Pembelajaran tata cara ibadah harian seperti wudhu dan shalat fardhu guna membentuk kemandirian ibadah.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/80 hover-lift">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-mustard/20 text-emeraldDark font-extrabold text-sm flex items-center justify-center">5</span>
+                            <h3 class="font-bold text-emeraldDark text-lg">Murattal</h3>
+                        </div>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Melatih kemampuan melantunkan ayat suci Al-Qur'an dengan irama yang indah, khidmat, dan sesuai kaidah tajwid.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 04 | Metode Belajar - Sistem Kelas yang Fleksibel -->
+        <section class="py-14 lg:py-20 bg-[#F3F1EB] border-t-2 border-mustard/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-bold tracking-widest text-mustard uppercase">04 &nbsp;|&nbsp; METODE BELAJAR</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-1 mb-6">Sistem Kelas yang Fleksibel</h2>
+
+                <!-- Info Box Atas -->
+                <div class="bg-emerald-50/90 border border-emeraldDark/25 rounded-xl p-4 sm:p-5 mb-8 text-xs sm:text-sm text-emeraldDark leading-relaxed">
+                    <strong>Placement Test &amp; Leveling:</strong> Setiap calon santri mengikuti tes kemampuan di awal pendaftaran untuk menentukan level belajar (Level 1 Dasar, Level 2 Menengah, atau Level 3 Mahir) dengan durasi 45–60 menit per pertemuan.
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Kolom Kiri: Pilihan Frekuensi Pertemuan -->
+                    <div class="space-y-4">
+                        <div class="bg-emeraldDark text-white font-bold text-sm px-5 py-3 rounded-xl">
+                            Pilihan Frekuensi Pertemuan
+                        </div>
+                        <div class="bg-white rounded-xl p-5 border border-stone-200/80 shadow-xs">
+                            <h4 class="font-bold text-emeraldDark text-base">Kelas Intensif Harian</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1">Dilaksanakan setiap hari kerja (Senin - Sabtu) untuk akselerasi kemampuan.</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 border border-stone-200/80 shadow-xs">
+                            <h4 class="font-bold text-emeraldDark text-base">Kelas Reguler</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1">Dilaksanakan 3 kali dalam sepekan dengan jadwal teratur.</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 border border-stone-200/80 shadow-xs">
+                            <h4 class="font-bold text-emeraldDark text-base">Kelas Mingguan</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1">Dilaksanakan 1 kali dalam seminggu untuk rutinitas menjaga tilawah atau hafalan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Pilihan Metode Interaksi -->
+                    <div class="space-y-4">
+                        <div class="bg-mustard text-white font-bold text-sm px-5 py-3 rounded-xl">
+                            Pilihan Metode Interaksi
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-stone-200/80 shadow-xs">
+                            <h4 class="font-bold text-emeraldDark text-base">Kelas Privat (1-on-1)</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1.5 leading-relaxed">Satu pengajar membimbing satu murid secara eksklusif untuk fokus dan perkembangan yang maksimal.</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-stone-200/80 shadow-xs">
+                            <h4 class="font-bold text-emeraldDark text-base">Kelas Kelompok (Small Group / Klasikal)</h4>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1.5 leading-relaxed">Satu pengajar membimbing beberapa murid dalam kelompok kecil untuk melatih interaksi dan kebersamaan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 05 | Jaminan Mutu - Sistem Evaluasi & Monitoring Orang Tua -->
+        <section class="py-14 lg:py-20 bg-creamBg border-t-2 border-mustard/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-bold tracking-widest text-mustard uppercase">05 &nbsp;|&nbsp; JAMINAN MUTU</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-1">Sistem Evaluasi &amp; Monitoring Orang Tua</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-2 mb-8">Untuk menjamin mutu pembelajaran, Tayassar Quranic menerapkan evaluasi berkala yang terstruktur dan transparan.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-emeraldDark text-white rounded-2xl p-7 shadow-md">
+                        <span class="inline-block bg-mustard text-emeraldDark text-[10px] font-extrabold uppercase px-2.5 py-1 rounded mb-4">MINGGUAN</span>
+                        <h3 class="font-bold text-lg mb-2">Penilaian Mingguan</h3>
+                        <p class="text-emerald-100/90 text-xs sm:text-sm leading-relaxed">
+                            Catatan harian pengajar seperti tingkat kelancaran bacaan, setoran hafalan, dan praktik fiqih ibadah santri.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-7 shadow-sm border border-stone-200/80">
+                        <span class="inline-block bg-[#EFECE3] text-emeraldDark text-[10px] font-extrabold uppercase px-2.5 py-1 rounded mb-4">PER 3 BULAN</span>
+                        <h3 class="font-bold text-emeraldDark text-lg mb-2">Ujian Kenaikan Level (UKL)</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Evaluasi komprehensif di setiap akhir bulan ke-3 berdasarkan standar Kriteria Ketuntasan Minimal (KKM).
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-7 shadow-sm border border-stone-200/80">
+                        <span class="inline-block bg-[#EFECE3] text-emeraldDark text-[10px] font-extrabold uppercase px-2.5 py-1 rounded mb-4">REAL-TIME</span>
+                        <h3 class="font-bold text-emeraldDark text-lg mb-2">Rapor &amp; Buku Monitoring</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Laporan digital perkembangan akademik dan kepribadian ibadah harian yang terhubung langsung dengan orang tua.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 06 | Mari Bergabung - Informasi & Pendaftaran Santri Baru -->
+        <section class="py-16 bg-emeraldDark text-white border-t-4 border-mustard">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="text-xs font-bold tracking-widest text-mustardBright uppercase">06 &nbsp;|&nbsp; MARI BERGABUNG</span>
+                <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold mt-2">
+                    Informasi &amp; Pendaftaran Santri Baru
+                </h2>
+                <p class="text-emerald-100/90 text-sm sm:text-base max-w-2xl mx-auto mt-3 mb-10">
+                    Mulai perjalanan belajar Al-Qur'an yang terarah, nyaman, dan menyenangkan langsung dari rumah bersama Tayassar Quranic. Hubungi kami untuk informasi jadwal, biaya pendidikan, dan pendaftaran:
+                </p>
+
+                <!-- 3 Kartu Kontak Interaktif -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <!-- [EDIT WHATSAPP PROFIL] Ubah nomor 6285134608556 dan teks 0851-3460-8556 di bawah ini -->
+                    <a href="https://wa.me/6285134608556" target="_blank" rel="noopener" class="bg-emeraldDeep/80 hover:bg-emeraldDeep border border-mustard/50 rounded-2xl p-6 transition hover-lift">
+                        <span class="text-[11px] font-bold text-mustardBright uppercase tracking-wider">WHATSAPP ADMIN</span>
+                        <div class="text-lg sm:text-xl font-extrabold text-white mt-2">0851-3460-8556</div>
+                        <div class="text-xs text-emerald-200 mt-1">Konsultasi Program &amp; Pendaftaran</div>
+                    </a>
+
+                    <a href="https://instagram.com/tayassar_quranic" target="_blank" rel="noopener" class="bg-emeraldDeep/80 hover:bg-emeraldDeep border border-mustard/50 rounded-2xl p-6 transition hover-lift">
+                        <span class="text-[11px] font-bold text-mustardBright uppercase tracking-wider">INSTAGRAM RESMI</span>
+                        <div class="text-lg sm:text-xl font-extrabold text-white mt-2">@tayassar_quranic</div>
+                        <div class="text-xs text-emerald-200 mt-1">Update Kegiatan &amp; Info Terbaru</div>
+                    </a>
+
+                    <a href="https://tayassarquranic.blogspot.com" target="_blank" rel="noopener" class="bg-emeraldDeep/80 hover:bg-emeraldDeep border border-mustard/50 rounded-2xl p-6 transition hover-lift">
+                        <span class="text-[11px] font-bold text-mustardBright uppercase tracking-wider">WEBSITE RESMI</span>
+                        <div class="text-lg sm:text-xl font-extrabold text-white mt-2">Tayassar Quranic</div>
+                        <div class="text-xs text-emerald-200 mt-1">tayassarquranic.blogspot.com</div>
+                    </a>
+                </div>
+
+                <!-- Kutipan Hadits -->
+                <div class="mt-12 pt-8 border-t border-emerald-800">
+                    <p class="font-serif italic text-mustardBright text-sm sm:text-base">
+                        "Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya."
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== HALAMAN 3: KELAS ANAK-ANAK ==================== -->
+    <main id="page-anak" class="page-section">
+        
+        <!-- 1. Hero Section Anak-Anak -->
+        <section class="bg-tealDark text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Kiri: Foto Anak Laki-laki Berpeci Putih Mengaji Online -->
+                    <div class="lg:col-span-6">
+                        <div class="p-3 bg-white/10 border border-white/25 rounded-2xl shadow-xl">
+                            <!-- [EDIT GAMBAR 2: HERO KELAS ANAK] Ganti atribut src="..." dengan link foto atau nama file lokal Anda -->
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/800x600/0E4D5C/FFFFFF?text=Kelas+Privat+Anak+Online';"
+                                 alt="Anak laki-laki belajar Al-Qur'an online di depan laptop" 
+                                 class="w-full h-72 sm:h-96 object-cover rounded-xl">
+                        </div>
+                    </div>
+
+                    <!-- Kanan: Judul Besar & Badge -->
+                    <div class="lg:col-span-6 text-center lg:text-left space-y-6">
+                        <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                            Anak Anda Belum Lancar Baca?
+                        </h1>
+                        <div>
+                            <span class="inline-block bg-creamBg text-tealDark font-extrabold text-sm sm:text-base px-6 py-2.5 rounded-full shadow-md">
+                                Ayah bunda jangan khawatir yah !
+                            </span>
+                        </div>
+                        <p class="text-teal-100 text-lg sm:text-xl font-medium">
+                            Belajar Privat Online dengan Guru Profesional Kami
+                        </p>
+                        <div class="pt-2">
+                            <button onclick="openRegisterModal('Kelas Privat Anak-Anak')" class="bg-cyanBright hover:bg-cyan-400 text-tealDark font-extrabold px-7 py-3.5 rounded-xl shadow-lg transition active:scale-95">
+                                Daftar Kelas Anak Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Solusi Kami (Latar Krem/Pasir Hangat #DFCBB0) -->
+        <section class="bg-warmSand py-14 lg:py-20 text-stone-900">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900">Solusi Kami :</h2>
+                        <ul class="space-y-3.5 text-base sm:text-lg font-medium text-stone-800">
+                            <li class="flex items-start gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-tealDark mt-2.5 flex-shrink-0"></span>
+                                <span>Atasi anak yang mudah terdistraksi saat belajar ramai-ramai</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-tealDark mt-2.5 flex-shrink-0"></span>
+                                <span>Atasi rasa bosan dengan metode belajar seru &amp; interaktif</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-tealDark mt-2.5 flex-shrink-0"></span>
+                                <span>Pendampingan belajar rutin oleh guru profesional</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-tealDark mt-2.5 flex-shrink-0"></span>
+                                <span>Laporan progres perkembangan anak setelah belajar</span>
+                            </li>
+                        </ul>
+                        <p class="text-xs text-stone-700 italic pt-2">
+                            Nb: Ayah bunda jangan sungkan untuk bertanya hal apapun. Kesimpulan biasanya didapatkan bersama di awal dan saat pembelajaran berlangsung.
+                        </p>
+                    </div>
+
+                    <!-- Kanan: Foto Ustadzah Mengajar via Laptop -->
+                    <div class="lg:col-span-6">
+                        <div class="p-3 border-2 border-tealDark/40 rounded-2xl bg-white/40 shadow-lg">
+                            <!-- [EDIT GAMBAR 3: SOLUSI KAMI KELAS ANAK] Ganti atribut src="..." dengan link foto atau nama file lokal Anda -->
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/800x600/DFCBB0/1E293B?text=Ustadzah+Mengajar+Online';"
+                                 alt="Ustadzah berhijab membimbing santri melalui laptop" 
+                                 class="w-full h-72 sm:h-80 object-cover rounded-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Program Mengaji Privat Anak-anak Tayassar Quranic (Grid 2x3 Warna-warni) -->
+        <section class="bg-tealDark py-16 lg:py-20 text-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <div class="inline-block bg-blue-600/90 border border-blue-400/40 px-6 py-2.5 rounded-xl shadow-md">
+                        <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">Program Mengaji Privat</h2>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-blue-700/90 px-6 py-2 rounded-xl text-lg sm:text-xl font-bold shadow">
+                            Anak-anak Tayassar Quranic
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Grid 2x3 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 01 Cyan -->
+                    <div class="bg-[#14B8C4] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#14B8C4] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">01</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Kurikulum Bertahap Sesuai Level Anak</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Materi disusun sistematis dari pengenalan huruf hijaiyah, makhraj, hingga tajwid dasar sesuai kemampuan anak.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 02 Cyan -->
+                    <div class="bg-[#14B8C4] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#14B8C4] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">02</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Pembinaan Karakter &amp; Ibadah Harian</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Anak tidak hanya belajar membaca Al-Qur'an, tetapi juga dibimbing menghafal doa sehari-hari, surat pendek, serta tata cara wudhu dan shalat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 03 Magenta -->
+                    <div class="bg-[#D81B7A] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#D81B7A] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">03</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Pendampingan Eksklusif Satu Guru Satu Murid</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Interaksi belajar terfokus dalam suasana ramah anak, sehingga guru dapat menyesuaikan pendekatan dan menjaga konsentrasi siswa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 04 Magenta -->
+                    <div class="bg-[#D81B7A] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#D81B7A] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">04</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Pilihan Waktu Belajar yang Dinamis</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Ayah dan Bunda bebas mengatur jadwal mengaji yang nyaman di sela aktivitas sekolah maupun kegiatan lain di rumah.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 05 Kuning Emas -->
+                    <div class="bg-[#F5B727] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#D99B0C] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">05</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Catatan Evaluasi Rutin Tiap Sesi</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Orang tua menerima ringkasan perkembangan belajar setelah pertemuan disertai rekomendasi latihan mandiri bersama keluarga.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 06 Kuning Emas -->
+                    <div class="bg-[#F5B727] rounded-2xl p-6 shadow-md flex items-start gap-4 hover-lift">
+                        <div class="w-11 h-11 rounded-full bg-white text-[#D99B0C] font-extrabold text-lg flex items-center justify-center flex-shrink-0 shadow">06</div>
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Solusi Mengaji Menuju Sekolah Islam &amp; Pesantren</h3>
+                            <p class="text-white/95 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                                Program persiapan terarah untuk membantu anak lebih percaya diri saat menghadapi tes baca Al-Qur'an dan hafalan masuk sekolah.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Estimasi Investasi Bimbingan Qur'an Premium (4 Kartu Pricing Dark Navy) -->
+        <section class="bg-[#182B49] py-16 lg:py-20 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-mustardBright tracking-wide uppercase">
+                        ESTIMASI INVESTASI BIMBINGAN QUR'AN PREMIUM
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base mt-2">
+                        Pilih skema yang paling sesuai dengan target dan ritme belajar Anda
+                    </p>
+                </div>
+
+                <!-- 4 Kartu Pricing -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Paket 1 -->
+                    <div class="bg-darkNavy border border-slate-700/80 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA TAHSIN<br>(DASAR)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 200.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM DASAR DENGAN 4 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                ESTIMASI 1X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Digital gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Tahsin (Dasar) - Rp 200.000/bln', 'Anak-Anak')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 2 -->
+                    <div class="bg-darkNavy border border-slate-700/80 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA JUZ 'AMMA<br>(REGULER)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 400.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM REGULER DENGAN 8 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                ESTIMASI 2X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Digital gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Juz Amma (Reguler) - Rp 400.000/bln', 'Anak-Anak')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 3 -->
+                    <div class="bg-darkNavy border border-slate-700/80 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA KHOTMIL QUR'AN<br>(INTENSIF)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 800.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM INTENSIF DENGAN 16 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                ESTIMASI BELAJAR 4X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Digital gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Khotmil Quran (Intensif) - Rp 800.000/bln', 'Anak-Anak')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 4 -->
+                    <div class="bg-darkNavy border border-mustard/60 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA TAHFIDZ PLUS<br>(EKSKLUSIF)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 1.000.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM AKSELERASI PENUH DENGAN 20 SESI BELAJAR (60 MENIT / SESI).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                AKSELERASI MAKSIMAL 5X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Metode belajar disesuaikan anak</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Metode Privat Individual (1-on-1)</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Buku Ajar Terstruktur &amp; Materi Digital gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln', 'Anak-Anak')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Testimoni Orang Tua -->
+        <section class="bg-warmSand py-16 lg:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900">Apa Kata Mereka Tentang Tayassar Quranic?</h2>
+                    <p class="text-stone-700 text-sm sm:text-base mt-2">Cerita dan pengalaman nyata para orang tua dalam mendampingi buah hati belajar mengaji.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Testi 1 -->
+                    <div class="bg-white rounded-2xl p-7 shadow-md text-center flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="w-10 h-1 bg-mustard mx-auto mb-3 rounded-full"></div>
+                            <div class="w-9 h-9 rounded-full bg-mustard text-white flex items-center justify-center mx-auto mb-4">
+                                <i class="fa-solid fa-quote-left text-sm"></i>
+                            </div>
+                            <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                                "Anak sulung saya usia 8 tahun memang masih di Iqro 3, baru kenal yang namanya tajwid, tetapi setelah ikut kelas privat dengan ustadzah-nya, jadi semangat ngaji dan sekarang sudah masuk Juz 30."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-mustard text-sm">Salsabilla</div>
+                            <div class="text-[11px] text-stone-500">Orang Tua Murid Tahsin Anak • Bandung</div>
+                        </div>
+                    </div>
+
+                    <!-- Testi 2 -->
+                    <div class="bg-white rounded-2xl p-7 shadow-md text-center flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="w-10 h-1 bg-teal-600 mx-auto mb-3 rounded-full"></div>
+                            <div class="w-9 h-9 rounded-full bg-teal-600 text-white flex items-center justify-center mx-auto mb-4">
+                                <i class="fa-solid fa-quote-left text-sm"></i>
+                            </div>
+                            <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                                "Alhamdulillah, anak kami sangat menikmati kelasnya. Metode pembelajarannya seru dan tidak membosankan. Setiap selesai sesi juga ada laporan perkembangan yang jelas untuk orang tua."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-teal-700 text-sm">Rizky Pratama</div>
+                            <div class="text-[11px] text-stone-500">Orang Tua Siswa Kelas Hafalan</div>
+                        </div>
+                    </div>
+
+                    <!-- Testi 3 -->
+                    <div class="bg-white rounded-2xl p-7 shadow-md text-center flex flex-col justify-between hover-lift">
+                        <div>
+                            <div class="w-10 h-1 bg-pink-700 mx-auto mb-3 rounded-full"></div>
+                            <div class="w-9 h-9 rounded-full bg-pink-700 text-white flex items-center justify-center mx-auto mb-4">
+                                <i class="fa-solid fa-quote-left text-sm"></i>
+                            </div>
+                            <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                                "Senang dengan metode yang diterapkan. Anak-anak jadi lebih fokus dan lancar membacanya. Pengajarnya juga sangat sabar membimbing dari awal."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-pink-700 text-sm">Sari Ratna</div>
+                            <div class="text-[11px] text-stone-500">Orang Tua Murid Kelas Privat</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CTA & Footer Gelap -->
+        <section class="bg-[#0F1E32] pt-12 pb-14 text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-[#EAEFF5] text-darkNavy rounded-2xl p-8 sm:p-10 text-center shadow-xl mb-12">
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold">Mulai Perjalanan Qur'an Anda</h2>
+                    <button onclick="openRegisterModal('', 'Anak-Anak')" class="mt-5 bg-[#299EB8] hover:bg-[#20889F] text-white font-bold px-8 py-3 rounded-full shadow transition active:scale-95">
+                        Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-slate-700/70 text-sm">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-300">Tayassar Quranic</h3>
+                        <p class="text-xs font-semibold text-white mt-1">Mengaji Privat secara online</p>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">Platform bimbingan mengaji privat daring bersama pengajar bersertifikat untuk semua usia.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-slate-400 mb-3">NAVIGASI</h4>
+                        <ul class="space-y-1.5 text-xs text-slate-300">
+                            <li><button onclick="navigateTo('tentang')" class="hover:text-white">Tentang Kami</button></li>
+                            <li><button onclick="navigateTo('anak')" class="hover:text-white">Kelas Anak-Anak</button></li>
+                            <li><button onclick="navigateTo('dewasa')" class="hover:text-white">Kelas Dewasa</button></li>
+                            <li><button onclick="navigateTo('dokumentasi')" class="hover:text-white">Dokumentasi &amp; Portofolio</button></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-slate-400 mb-3">LOKASI &amp; MEDIA SOSIAL</h4>
+                        <p class="text-xs text-slate-300">Ciranjang – Cianjur</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <a href="https://tayassarquranic.blogspot.com" target="_blank" rel="noopener" aria-label="Website" class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white hover:opacity-90">
+                                <i class="fa-brands fa-facebook-f text-xs"></i>
+                            </a>
+                            <a href="https://instagram.com/tayassar_quranic" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-white text-pink-600 flex items-center justify-center hover:opacity-90">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== HALAMAN 4: KELAS DEWASA ==================== -->
+    <main id="page-dewasa" class="page-section">
+        
+        <!-- 1. Hero Section Kelas Dewasa -->
+        <section class="bg-creamBg py-12 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    <!-- Kiri -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-xs font-bold tracking-wider uppercase px-4 py-1.5 rounded-full">
+                            KELAS PRIVAT AL-QUR'AN DEWASA
+                        </span>
+                        <h1 class="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-emeraldDark leading-tight">
+                            Perbaiki Bacaan Al-Qur'an Tanpa Rasa Sungkan, Sesuai Ritme Kesibukan Anda.
+                        </h1>
+                        <p class="text-stone-600 text-base leading-relaxed">
+                            Tidak ada kata terlambat untuk memulai dari nol maupun menyempurnakan tajwid. Dampingi hari-hari sibuk Anda dengan sesi mengaji privat 1-on-1 yang tenang, personal, dan bebas tekanan.
+                        </p>
+                        <div class="pt-1">
+                            <button onclick="openRegisterModal('Sesi Awal Gratis (Kelas Dewasa)', 'Dewasa')" class="bg-terracotta hover:bg-[#B25C2E] text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition active:scale-95">
+                                Jadwalkan Sesi Awal Gratis
+                            </button>
+                            <p class="text-xs text-stone-500 mt-3 flex items-center gap-1.5">
+                                <i class="fa-solid fa-check text-emerald-700"></i> Sesi perkenalan &amp; pemetaan level bacaan tanpa biaya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: Kartu Berbingkai Tipis dengan Foto Pria Dewasa -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white border border-mustard/60 rounded-3xl p-4 sm:p-5 shadow-md">
+                            <div class="rounded-2xl overflow-hidden bg-stone-200 aspect-[4/3]">
+                                <!-- [EDIT GAMBAR 4: HERO KELAS DEWASA] Ganti atribut src="..." dengan link foto atau nama file lokal Anda -->
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/F8F7F2/114232?text=Kelas+Privat+Dewasa';"
+                                     alt="Peserta dewasa belajar Al-Qur'an di ruang kerja nyaman" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <p class="text-center text-stone-600 text-xs sm:text-sm italic px-4 pt-4 pb-2 leading-relaxed">
+                                "Belajar dari rumah atau sela jam istirahat kantor. Privasi terjaga penuh karena hanya ada Anda dan pengajar."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Alur Pendampingan -->
+        <section class="bg-white py-16 lg:py-20 border-t border-stone-200/70">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold tracking-widest text-terracotta uppercase">ALUR PENDAMPINGAN</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                        Bagaimana Kami Membantu Anda Mahir Membaca?
+                    </h2>
+                </div>
+
+                <!-- 3 Kartu Langkah -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-[#FAF9F5] border border-stone-200/80 rounded-2xl p-7 hover-lift">
+                        <span class="inline-block bg-emeraldDark text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded mb-4">
+                            LANGKAH 01
+                        </span>
+                        <h3 class="font-bold text-emeraldDark text-lg mb-2.5">Pemetaan Level Awal</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Di pertemuan pertama, pengajar menyimak bacaan Anda secara santai untuk menentukan titik mulai yang paling pas, baik dari pengenalan huruf maupun perbaikan makhraj.
+                        </p>
+                    </div>
+
+                    <div class="bg-[#FAF9F5] border border-stone-200/80 rounded-2xl p-7 hover-lift">
+                        <span class="inline-block bg-emeraldDark text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded mb-4">
+                            LANGKAH 02
+                        </span>
+                        <h3 class="font-bold text-emeraldDark text-lg mb-2.5">Latihan Praktis &amp; Tajwid</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Materi disampaikan dengan bahasa dewasa yang logis dan mudah dipahami. Anda langsung mempraktikkan hukum bacaan tanpa terbebani hafalan teori yang rumit.
+                        </p>
+                    </div>
+
+                    <div class="bg-[#FAF9F5] border border-stone-200/80 rounded-2xl p-7 hover-lift">
+                        <span class="inline-block bg-emeraldDark text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded mb-4">
+                            LANGKAH 03
+                        </span>
+                        <h3 class="font-bold text-emeraldDark text-lg mb-2.5">Evaluasi &amp; Target Khatam</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Setiap akhir sesi, pengajar mencatat poin koreksi spesifik agar Anda bisa mengulangnya secara mandiri hingga lancar membaca mushaf dengan tartil.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Banner Hijau Tua di Bawahnya -->
+                <div class="mt-8 bg-emeraldDark text-white text-center text-xs sm:text-sm font-medium py-4 px-6 rounded-xl shadow-sm">
+                    Punya target khusus seperti memperbaiki bacaan shalat atau persiapan umroh? Sampaikan di awal agar kurikulum disesuaikan.
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Estimasi Investasi Bimbingan Qur'an Premium (Latar Toska Cerah #14C8C8) -->
+        <section class="bg-cyanBright py-16 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-mustardBright drop-shadow-xs tracking-wide uppercase" style="text-shadow: 0 1px 2px rgba(0,0,0,0.25);">
+                        ESTIMASI INVESTASI BIMBINGAN QUR'AN PREMIUM
+                    </h2>
+                    <p class="text-white font-medium text-sm sm:text-base mt-2">
+                        Pilih skema yang paling sesuai dengan target dan ritme belajar Anda
+                    </p>
+                </div>
+
+                <!-- 4 Kartu Pricing -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-white">
+                    <!-- Paket 1 -->
+                    <div class="bg-darkNavy rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA TAHSIN<br>(DASAR)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 200.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM DASAR DENGAN 4 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                KONSISTEN 1X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Eksklusif gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Tahsin (Dasar) - Rp 200.000/bln', 'Dewasa')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 2 -->
+                    <div class="bg-darkNavy rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA JUZ 'AMMA<br>(REGULER)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 400.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM REGULER DENGAN 8 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                FLEKSIBEL DENGAN 2X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Eksklusif gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Juz Amma (Reguler) - Rp 400.000/bln', 'Dewasa')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 3 -->
+                    <div class="bg-darkNavy rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA KHOTMIL QUR'AN<br>(INTENSIF)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 800.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM INTENSIF DENGAN 16 SESI BELAJAR (DURASI 60 MENIT / PERTEMUAN).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                KOMITMEN BELAJAR 4X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Dibimbing Pengajar Bersertifikat Resmi</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kelas Eksklusif (1 Guru, 1 Siswa) untuk fokus optimal</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Akses Modul Lengkap &amp; Bahan Ajar Eksklusif gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Khotmil Quran (Intensif) - Rp 800.000/bln', 'Dewasa')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+
+                    <!-- Paket 4 -->
+                    <div class="bg-darkNavy rounded-2xl p-6 flex flex-col justify-between shadow-xl hover-lift">
+                        <div>
+                            <div class="text-center border-b border-slate-700 pb-4">
+                                <h3 class="text-xs font-extrabold tracking-wider text-mustardBright uppercase">SKEMA TAHFIDZ PLUS<br>(EKSKLUSIF)</h3>
+                                <div class="text-xl font-extrabold text-white mt-3">RP 1.000.000 / BULAN</div>
+                            </div>
+                            <p class="text-center text-xs text-slate-300 mt-4 leading-relaxed">
+                                PROGRAM PERCEPATAN UNGGULAN DENGAN 20 SESI BELAJAR (60 MENIT / SESI).
+                            </p>
+                            <div class="text-center text-[11px] font-bold text-cyanBright uppercase mt-3 pb-4 border-b border-slate-700/70">
+                                AKSELERASI MAKSIMAL 5X SEMINGGU.
+                            </div>
+                            <ul class="mt-4 space-y-2.5 text-xs text-slate-200">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Ustadz/Ustadzah Bersanad</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Metode Privat Individual (1-on-1)</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-mustardBright mt-0.5"></i> Kurikulum Terstruktur &amp; Materi Digital gratis</li>
+                            </ul>
+                        </div>
+                        <button onclick="openRegisterModal('Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln', 'Dewasa')" class="mt-6 w-full bg-mustard hover:bg-mustardBright text-darkNavy font-extrabold text-xs py-3 rounded-lg uppercase tracking-wider transition active:scale-95">
+                            AJUKAN PENDAFTARAN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Testimoni Peserta Dewasa (Split Section) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12">
+            <!-- Panel Kiri: Hijau Tua -->
+            <div class="lg:col-span-4 bg-emeraldDark text-white p-10 sm:p-14 flex flex-col justify-center space-y-4">
+                <span class="text-xs font-bold tracking-widest text-mustardBright uppercase">TESTIMONI PESERTA DEWASA</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold leading-snug">
+                    Pengalaman Nyata Belajar Mengaji di Usia Dewasa
+                </h2>
+                <div class="w-10 h-1 bg-terracotta rounded-full"></div>
+                <p class="text-emerald-100/90 text-sm leading-relaxed">
+                    Cerita para profesional, orang tua, dan peserta dewasa dalam memperbaiki makhraj serta tajwid Al-Qur'an tanpa rasa sungkan.
+                </p>
+            </div>
+
+            <!-- Panel Kanan: 3 Kartu Testimoni Horizontal -->
+            <div class="lg:col-span-8 bg-[#F4F3EE] p-6 sm:p-12 space-y-5">
+                <!-- Testi 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/70">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-terracotta text-white font-bold text-sm flex items-center justify-center">TN</div>
+                            <div>
+                                <div class="font-bold text-emeraldDark text-sm">Tri Nordin</div>
+                                <div class="text-xs text-stone-500">Peserta Dewasa • Karyawan</div>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-50 text-emeraldDark text-[11px] font-semibold px-3 py-1 rounded-full">Kelas Tahsin Dewasa • Malam</span>
+                    </div>
+                    <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                        "Alhamdulillah, belajar privat online memang solusi pas untuk orang dewasa macam saya. Jadwal bisa diatur agar tidak bentrok dengan kerja, dan ustadznya tidak pernah menghakimi kalau bacaan saya terbata-bata. Sekarang jauh lebih percaya diri."
+                    </p>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/70">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emeraldDark text-white font-bold text-sm flex items-center justify-center">PL</div>
+                            <div>
+                                <div class="font-bold text-emeraldDark text-sm">Pak Luhur</div>
+                                <div class="text-xs text-stone-500">Karyawan Swasta • Jakarta</div>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-50 text-emeraldDark text-[11px] font-semibold px-3 py-1 rounded-full">Privat 1-on-1 • Malam</span>
+                    </div>
+                    <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                        "Alhamdulillah, di usia dewasa akhirnya saya punya waktu khusus untuk memperbaiki makhraj dan tajwid yang selama ini masih keliru. Sistem privat 1-on-1 membuat saya jauh lebih percaya diri saat bertanya, dan progres bacaan terasa nyata setiap pekannya."
+                    </p>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/70">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-rose-700 text-white font-bold text-sm flex items-center justify-center">AH</div>
+                            <div>
+                                <div class="font-bold text-emeraldDark text-sm">Azhar Hamdalah</div>
+                                <div class="text-xs text-stone-500">Ayah 2 Anak • Bandung</div>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-50 text-emeraldDark text-[11px] font-semibold px-3 py-1 rounded-full">Bimbingan Tilawah • Dewasa</span>
+                    </div>
+                    <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                        "Having a patient teacher who explains makhraj and tajwid in a logical way makes all the difference for a busy adult. The one-on-one session is calm, structured, and completely judgment-free. I genuinely look forward to every class after work."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CTA & Footer Toska Cerah -->
+        <section class="bg-cyanBright pt-12 pb-14 text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-[#EAEFF5] text-darkNavy rounded-2xl p-8 sm:p-10 text-center shadow-xl mb-12">
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold">Mulai Perjalanan Qur'an Anda</h2>
+                    <button onclick="openRegisterModal('', 'Dewasa')" class="mt-5 bg-[#299EB8] hover:bg-[#20889F] text-white font-bold px-8 py-3 rounded-full shadow transition active:scale-95">
+                        Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-white/30 text-sm">
+                    <div>
+                        <h3 class="font-bold text-lg text-tealDark">Tayassar Quranic</h3>
+                        <p class="text-xs font-bold text-white mt-1">Mengaji Privat secara online</p>
+                        <p class="text-xs text-white/95 mt-2 leading-relaxed">Platform bimbingan mengaji privat daring bersama pengajar bersertifikat untuk semua usia.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-tealDark mb-3">NAVIGASI</h4>
+                        <ul class="space-y-1.5 text-xs font-medium text-white">
+                            <li><button onclick="navigateTo('tentang')" class="hover:underline">Tentang Kami</button></li>
+                            <li><button onclick="navigateTo('anak')" class="hover:underline">Kelas Anak-Anak</button></li>
+                            <li><button onclick="navigateTo('dewasa')" class="hover:underline">Kelas Dewasa</button></li>
+                            <li><button onclick="navigateTo('dokumentasi')" class="hover:underline">Dokumentasi &amp; Portofolio</button></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-tealDark mb-3">LOKASI &amp; MEDIA SOSIAL</h4>
+                        <p class="text-xs font-medium text-white">Ciranjang – Cianjur</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <a href="https://tayassarquranic.blogspot.com" target="_blank" rel="noopener" aria-label="Website" class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white hover:opacity-90">
+                                <i class="fa-brands fa-facebook-f text-xs"></i>
+                            </a>
+                            <a href="https://instagram.com/tayassar_quranic" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-white text-pink-600 flex items-center justify-center hover:opacity-90">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== HALAMAN 5: DOKUMENTASI & PORTOFOLIO ==================== -->
+    <main id="page-dokumentasi" class="page-section">
+
+        <!-- 1. Hero Section Portofolio & Dokumentasi -->
+        <section class="bg-[#0B3B2E] text-white border-l-8 border-mustard">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Kiri: Teks & 3 Kotak Statistik -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <span class="inline-block bg-mustard text-[#0B3B2E] text-[11px] font-extrabold tracking-widest uppercase px-3.5 py-1.5 rounded">
+                            PORTOFOLIO &amp; DOKUMENTASI
+                        </span>
+                        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                            Perjalanan Belajar Tayassar Quranic
+                        </h1>
+                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Rekam jejak kebersamaan, semangat belajar membaca Al-Qur'an, serta perkembangan santri kelas anak dan dewasa dari awal hingga mahir.
+                        </p>
+
+                        <!-- 3 Kotak Statistik Ringkas -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-2 max-w-xl">
+                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                                <div class="text-lg sm:text-2xl font-extrabold text-mustardBright">400+</div>
+                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-0.5">Sesi Kelas Terlaksana</div>
+                            </div>
+                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug pt-0.5">Anak &amp; Dewasa</div>
+                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-1">Peserta Aktif</div>
+                            </div>
+                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug pt-0.5">Privat &amp; Grup</div>
+                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-1">Metode Fleksibel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: 2 Kartu Pratinjau Foto Kolase -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div onclick="openLightbox(this.querySelector('img').src, 'Dokumentasi Kelas Privat Anak Online')" class="cursor-pointer bg-white/10 p-2 rounded-xl border border-mustard/50 shadow-lg group overflow-hidden">
+                            <div class="relative rounded-lg overflow-hidden aspect-[16/9] bg-stone-800">
+                                <!-- [EDIT GAMBAR DOKUMENTASI: HERO KOLASE 1] -->
+                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/800x450/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Anak';"
+                                     alt="Dokumentasi Kelas Privat Anak Online"
+                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                    <span class="bg-white/90 text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Foto</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div onclick="openLightbox(this.querySelector('img').src, 'Dokumentasi Materi Tajwid & Makhraj Interaktif')" class="cursor-pointer bg-white/10 p-2 rounded-xl border border-mustard/50 shadow-lg group overflow-hidden">
+                            <div class="relative rounded-lg overflow-hidden aspect-[16/9] bg-stone-800">
+                                <!-- [EDIT GAMBAR DOKUMENTASI: HERO KOLASE 2] -->
+                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/800x450/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Tajwid';"
+                                     alt="Dokumentasi Materi Tajwid & Makhraj Interaktif"
+                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                    <span class="bg-white/90 text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Foto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Section 1: Tahapan Perjalanan Belajar Santri -->
+        <section class="py-14 lg:py-20 bg-creamBg border-b border-stone-200/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                    TIMELINE PERJALANAN
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                    Tahapan Perjalanan Belajar Santri
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-10">
+                    Bagaimana proses pendampingan di Tayassar Quranic berjalan dari tahap awal hingga evaluasi akhir.
+                </p>
+
+                <!-- Garis Timeline Horizontal dengan 4 Lingkaran Bernomor -->
+                <div class="relative hidden lg:grid grid-cols-4 gap-6 mb-5">
+                    <div class="absolute top-1/2 left-[12.5%] right-[12.5%] h-0.5 bg-mustard -translate-y-1/2 z-0"></div>
+                    <div class="relative z-10 flex justify-center">
+                        <span class="w-9 h-9 rounded-full bg-emeraldDark text-white font-extrabold text-sm flex items-center justify-center ring-4 ring-creamBg shadow">1</span>
+                    </div>
+                    <div class="relative z-10 flex justify-center">
+                        <span class="w-9 h-9 rounded-full bg-emeraldDark text-white font-extrabold text-sm flex items-center justify-center ring-4 ring-creamBg shadow">2</span>
+                    </div>
+                    <div class="relative z-10 flex justify-center">
+                        <span class="w-9 h-9 rounded-full bg-emeraldDark text-white font-extrabold text-sm flex items-center justify-center ring-4 ring-creamBg shadow">3</span>
+                    </div>
+                    <div class="relative z-10 flex justify-center">
+                        <span class="w-9 h-9 rounded-full bg-emeraldDark text-white font-extrabold text-sm flex items-center justify-center ring-4 ring-creamBg shadow">4</span>
+                    </div>
+                </div>
+
+                <!-- 4 Kartu Tahap -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Tahap 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-emeraldDark hover-lift">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-extrabold tracking-wider text-mustard uppercase">TAHAP 1</span>
+                            <span class="lg:hidden w-6 h-6 rounded-full bg-emeraldDark text-white text-xs font-bold flex items-center justify-center">1</span>
+                        </div>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Pemetaan Awal (Placement)</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Pengajar menguji kemampuan dasar pelafalan huruf hijaiyah dan bacaan peserta untuk menentukan level belajar yang tepat.
+                        </p>
+                    </div>
+
+                    <!-- Tahap 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-emeraldDark hover-lift">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-extrabold tracking-wider text-mustard uppercase">TAHAP 2</span>
+                            <span class="lg:hidden w-6 h-6 rounded-full bg-emeraldDark text-white text-xs font-bold flex items-center justify-center">2</span>
+                        </div>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Bimbingan Rutin &amp; Tahsin</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Sesi belajar tatap muka daring secara berkala dengan fokus perbaikan makhraj, sifat huruf, mad, serta hukum tajwid.
+                        </p>
+                    </div>
+
+                    <!-- Tahap 3 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-emeraldDark hover-lift">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-extrabold tracking-wider text-mustard uppercase">TAHAP 3</span>
+                            <span class="lg:hidden w-6 h-6 rounded-full bg-emeraldDark text-white text-xs font-bold flex items-center justify-center">3</span>
+                        </div>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Murajaah &amp; Setoran Hafalan</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Penguatan materi melalui pengulangan bacaan harian dan setoran hafalan surat-surat pendek bagi kelas anak maupun dewasa.
+                        </p>
+                    </div>
+
+                    <!-- Tahap 4 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-emeraldDark hover-lift">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-extrabold tracking-wider text-mustard uppercase">TAHAP 4</span>
+                            <span class="lg:hidden w-6 h-6 rounded-full bg-emeraldDark text-white text-xs font-bold flex items-center justify-center">4</span>
+                        </div>
+                        <h3 class="font-bold text-emeraldDark text-base mb-2">Evaluasi &amp; Laporan Kemajuan</h3>
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                            Ujian kenaikan tingkat di akhir periode disertai laporan perkembangan guru (progres rapor) dan sertifikat kelulusan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-stone-200/70 text-[11px] text-stone-400">
+                    Tayassar Quranic • Dokumentasi Perjalanan Belajar
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Section 2: Dokumentasi Program Mengaji Anak-Anak -->
+        <section class="py-14 lg:py-20 bg-[#F4F3EE] border-b border-stone-200/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                    GALERI KELAS ANAK
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                    Dokumentasi Program Mengaji Anak-Anak
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
+                    Momen keceriaan murid cilik saat mengenal huruf hijaiyah, membaca Iqra, dan mengaji Juz 30.
+                </p>
+
+                <!-- Grid 3 Kartu Foto Berbingkai -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Kartu 1 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi Interaktif Pengenalan Huruf — Belajar hijaiyah menggunakan kartu warna & layar interaktif.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 1] -->
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Sesi+Interaktif+Huruf';"
+                                 alt="Sesi Interaktif Pengenalan Huruf"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi Interaktif Pengenalan Huruf</h3>
+                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                Belajar hijaiyah menggunakan kartu warna &amp; layar interaktif.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 2 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Tahsin & Tilawah Anak — Pelatihan pengucapan huruf dengan suasana ceria.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 2] -->
+                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Tahsin+Anak';"
+                                 alt="Bimbingan Tahsin & Tilawah Anak"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Tahsin &amp; Tilawah Anak</h3>
+                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                Pelatihan pengucapan huruf dengan suasana ceria.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 3 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Mengaji Dasar — Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 3] -->
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Mengaji+Dasar';"
+                                 alt="Bimbingan Mengaji Dasar"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Mengaji Dasar</h3>
+                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kotak Sorotan Bawah -->
+                <div class="mt-7 bg-[#EBF3EF] border-l-4 border-mustard rounded-r-xl p-4 sm:p-5 text-xs sm:text-sm text-emeraldDark leading-relaxed">
+                    <strong>Catatan Perkembangan:</strong> Rata-rata murid anak mulai lancar menyambung huruf hijaiyah dan menghafal 5–10 surat pendek dalam 2 bulan pertama.
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-stone-200/70 text-[11px] text-stone-400">
+                    Tayassar Quranic • Dokumentasi Perjalanan Belajar
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Section 3: Dokumentasi Program Hafalan -->
+        <section class="py-14 lg:py-20 bg-creamBg border-b border-stone-200/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                    GALERI TAHFIDZUL QUR'AN
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                    Dokumentasi Program Hafalan
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
+                    Momen keseriusan murid saat menghafal Juz 30 dan Surat Pilihan.
+                </p>
+
+                <!-- Grid 3 Kartu Foto Berbingkai -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Kartu 1 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Anak — Setoran hafalan surat pendek Juz 30')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 1] -->
+                            <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Anak';"
+                                 alt="Sesi PR Hafalan Anak"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Anak</h3>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 2 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Dewasa — Murojaah & setoran ayat pilihan')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 2] -->
+                            <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Dewasa';"
+                                 alt="Sesi PR Hafalan Dewasa"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Dewasa</h3>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 3 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Anak — Evaluasi kelancaran hafalan bersama pengajar')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 3] -->
+                            <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Anak';"
+                                 alt="Sesi PR Hafalan Anak"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-3.5 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Anak</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-stone-200/70 text-[11px] text-stone-400">
+                    Tayassar Quranic • Dokumentasi Perjalanan Belajar
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Section 4: Dokumentasi Kelas Dewasa -->
+        <section class="py-14 lg:py-20 bg-[#F4F3EE] border-b border-stone-200/80">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                    GALERI KELAS DEWASA
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                    Dokumentasi Kelas Dewasa
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
+                    Suasana belajar yang nyaman dan suportif bagi peserta dewasa untuk memperbaiki kualitas bacaan Al-Qur'an.
+                </p>
+
+                <!-- Grid 2 Kartu Foto Berbingkai Lebar -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Kartu 1 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Kelas Tahsin & Makhraj — Praktek pelafalan huruf panjang-pendek bersama pengajar secara detail & sabar.')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[16/9] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: DEWASA 1] -->
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/800x450/114232/FFFFFF?text=Kelas+Tahsin+dan+Makhraj';"
+                                 alt="Kelas Tahsin & Makhraj"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-4 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-base">Kelas Tahsin &amp; Makhraj</h3>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1 leading-relaxed">
+                                Praktek pelafalan huruf panjang-pendek bersama pengajar secara detail &amp; sabar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 2 -->
+                    <div onclick="openLightbox(this.querySelector('img').src, 'Kelas Tahsin Jamak, Hukum Mim Sukun & Qalqalah — Pendampingan intensif memperbaiki bacaan dengan peraga visual yang terukur.')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border border-mustard/50 hover-lift group">
+                        <div class="relative rounded-xl overflow-hidden aspect-[16/9] bg-stone-200">
+                            <!-- [EDIT GAMBAR DOKUMENTASI: DEWASA 2] -->
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/800x450/114232/FFFFFF?text=Hukum+Mim+Sukun+dan+Qalqalah';"
+                                 alt="Kelas Tahsin Jamak, Hukum Mim Sukun & Qalqalah"
+                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        </div>
+                        <div class="pt-4 px-1 pb-1">
+                            <h3 class="font-bold text-emeraldDark text-base">Kelas Tahsin Jamak, Hukum Mim Sukun &amp; Qalqalah</h3>
+                            <p class="text-stone-600 text-xs sm:text-sm mt-1 leading-relaxed">
+                                Pendampingan intensif memperbaiki bacaan dengan peraga visual yang terukur.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kotak Sorotan Bawah -->
+                <div class="mt-7 bg-[#FDF7EB] border-l-4 border-mustard rounded-r-xl p-4 sm:p-5 text-xs sm:text-sm text-stone-800 leading-relaxed">
+                    <strong class="text-emeraldDark">Fokus Utama:</strong> Peserta dewasa dibimbing mengenali kesalahan umum dalam bacaan shalat sehari-hari serta memperlancar tilawah Al-Qur'an dan meningkatkan nilai-nilai dengan tartil.
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-stone-200/70 text-[11px] text-stone-400">
+                    Tayassar Quranic • Dokumentasi Perjalanan Belajar
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Section 5: Kesan Santri & Wali Santri -->
+        <section class="py-14 lg:py-20 bg-creamBg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                    CERITA &amp; TESTIMONI
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                    Kesan Santri &amp; Wali Santri
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
+                    Pengalaman nyata dari para peserta yang telah mengikuti perjalanan belajar di Tayassar Quranic.
+                </p>
+
+                <!-- Grid 3 Kartu Testimoni -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Testimoni 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-mustard flex flex-col justify-between hover-lift">
+                        <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                            "Alhamdulillah anak saya yang tadinya sulit fokus mengaji, sekarang selalu menunggu jadwal kelas. Ustadzahnya sangat sabar dan penyampaiannya menyenangkan."
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-emeraldDark text-sm">Bunda Zahratul Nadhah</div>
+                            <div class="text-[11px] text-stone-500">Wali Santri Kelas Anak</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimoni 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-emeraldDark flex flex-col justify-between hover-lift">
+                        <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                            "Awalnya saya malu belajar dari nol di usia dewasa. Di Tayassar Quranic suasananya sangat nyaman dan tidak menggurui, sekarang bacaan saya jauh lebih lancar."
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-emeraldDark text-sm">Bapak Fauzi</div>
+                            <div class="text-[11px] text-stone-500">Peserta Kelas Tahsin Dewasa</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimoni 3 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-stone-200/80 border-t-4 border-t-mustard flex flex-col justify-between hover-lift">
+                        <p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed">
+                            "Koreksi makhraj dan panjang pendek bacaannya sangat detail. Setiap selesai sesi selalu ada catatan evaluasi sehingga mudah diulang di rumah."
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-stone-100">
+                            <div class="font-bold text-emeraldDark text-sm">Ukhti Putri Lestari</div>
+                            <div class="text-[11px] text-stone-500">Peserta Kelas Tahsin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Banner Bawah -->
+                <div class="mt-12 bg-[#0B3B2E] text-white rounded-xl p-5 sm:p-7 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-xs sm:text-sm font-medium text-center sm:text-left">
+                        Ingin menjadi bagian dari perjalanan belajar berikutnya? <span class="text-mustardBright font-bold">Daftar Kelas Percobaan sekarang.</span>
+                    </p>
+                    <button onclick="openRegisterModal('Sesi Awal Gratis & Placement Test')" class="bg-mustard hover:bg-mustardBright text-[#0B3B2E] font-extrabold text-xs sm:text-sm px-6 py-2.5 rounded-lg shadow transition whitespace-nowrap active:scale-95">
+                        Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="mt-6 text-[11px] text-stone-400">
+                    Tayassar Quranic • Dokumentasi Perjalanan Belajar
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+    <!-- [EDIT WHATSAPP FLOATING] Ganti nomor 6285134608556 dan teks 0851-3460-8556 di bawah ini -->
+    <a href="https://wa.me/6285134608556?text=Assalamu'alaikum%20Admin%20Tayassar%20Quranic,%20saya%20ingin%20bertanya%20tentang%20kelas%20mengaji%20online." 
+       target="_blank" rel="noopener" 
+       aria-label="Chat WhatsApp Admin"
+       class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 bg-[#25D366] hover:bg-[#1EBE5D] text-white w-14 h-14 sm:w-auto sm:h-auto sm:px-4 sm:py-3 rounded-full shadow-xl flex items-center justify-center sm:gap-2.5 transition transform hover:scale-105 active:scale-95">
+        <i class="fa-brands fa-whatsapp text-2xl leading-none"></i>
+        <span class="hidden sm:inline text-xs font-bold tracking-wide">Chat Admin</span>
+    </a>
+
+
+    <!-- ==================== MODAL 1: PENDAFTARAN & WHATSAPP OTOMATIS ==================== -->
+    <div id="register-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden border border-stone-200 my-8">
+            <!-- Header Modal -->
+            <div class="bg-emeraldDark text-white px-6 py-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] font-bold tracking-widest text-mustardBright uppercase">FORMULIR PENDAFTARAN</span>
+                    <h3 class="font-serif text-xl font-bold mt-0.5">Daftar Kelas Tayassar Quranic</h3>
+                </div>
+                <button onclick="closeRegisterModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form id="registration-form" onsubmit="submitWhatsAppForm(event)" class="p-6 space-y-4 text-sm">
+                <div>
+                    <label class="block font-semibold text-stone-700 mb-1">Nama Lengkap Santri / Orang Tua *</label>
+                    <input type="text" id="reg-name" required placeholder="Contoh: Ahmad Fauzan / Bunda Salsabilla" 
+                           class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark focus:ring-2 focus:ring-emeraldDark/20 outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-stone-700 mb-1">Kategori Usia *</label>
+                        <select id="reg-category" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark outline-none bg-white">
+                            <option value="Anak-Anak">Anak-Anak (5 - 12 Thn)</option>
+                            <option value="Remaja">Remaja (13 - 17 Thn)</option>
+                            <option value="Dewasa">Dewasa (18+ Thn)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-stone-700 mb-1">Metode Interaksi *</label>
+                        <select id="reg-mode" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark outline-none bg-white">
+                            <option value="Privat (1-on-1)">Privat (1-on-1)</option>
+                            <option value="Kelompok Kecil (Small Group)">Kelompok Kecil</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-stone-700 mb-1">Pilihan Paket / Program *</label>
+                    <select id="reg-package" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark outline-none bg-white">
+                        <option value="Sesi Awal Gratis & Placement Test">Sesi Awal Gratis &amp; Placement Test</option>
+                        <option value="Skema Tahsin (Dasar) - Rp 200.000/bln">Skema Tahsin (Dasar) - Rp 200.000/bln (4 Sesi)</option>
+                        <option value="Skema Juz Amma (Reguler) - Rp 400.000/bln">Skema Juz 'Amma (Reguler) - Rp 400.000/bln (8 Sesi)</option>
+                        <option value="Skema Khotmil Quran (Intensif) - Rp 800.000/bln">Skema Khotmil Qur'an (Intensif) - Rp 800.000/bln (16 Sesi)</option>
+                        <option value="Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln">Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln (20 Sesi)</option>
+                        <option value="Kelas Privat Anak-Anak">Kelas Privat Anak-Anak</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-stone-700 mb-1">Preferensi Hari &amp; Waktu Belajar</label>
+                    <input type="text" id="reg-schedule" placeholder="Contoh: Senin & Kamis Ba'da Maghrib / Akhir Pekan" 
+                           class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark focus:ring-2 focus:ring-emeraldDark/20 outline-none">
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                    <button type="submit" class="w-full bg-emeraldDark hover:bg-emeraldDeep text-white font-bold py-3 px-5 rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>
+                        Kirim Pendaftaran via WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ==================== MODAL 2: SIMULASI PLACEMENT TEST INTERAKTIF ==================== -->
+    <div id="placement-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden border border-stone-200 my-8">
+            <div class="bg-emeraldDark text-white px-6 py-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] font-bold tracking-widest text-mustardBright uppercase">PEMETAAN LEVEL SANTRI</span>
+                    <h3 class="font-serif text-xl font-bold mt-0.5">Simulasi Placement Test Singkat</h3>
+                </div>
+                <button onclick="closePlacementModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="placement-body" class="p-6 space-y-5 text-sm">
+                <p class="text-stone-600 text-xs sm:text-sm">
+                    Jawab 3 pertanyaan singkat berikut untuk mengetahui rekomendasi level awal belajar Al-Qur'an Anda di Tayassar Quranic:
+                </p>
+
+                <!-- Q1 -->
+                <div class="space-y-2">
+                    <label class="font-bold text-emeraldDark block">1. Bagaimana kemampuan mengenal huruf hijaiyah &amp; tanda baca (harakat) saat ini?</label>
+                    <select id="pt-q1" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
+                        <option value="1">Belum hafal seluruh huruf hijaiyah / masih sering tertukar</option>
+                        <option value="2">Sudah hafal huruf hijaiyah &amp; harakat dasar, tapi belum lancar menyambung</option>
+                        <option value="3">Sudah lancar membaca huruf sambung dan ayat Al-Qur'an</option>
+                    </select>
+                </div>
+
+                <!-- Q2 -->
+                <div class="space-y-2">
+                    <label class="font-bold text-emeraldDark block">2. Bagaimana pemahaman hukum bacaan Tajwid (Nun Sukun, Mim Sukun, Mad)?</label>
+                    <select id="pt-q2" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
+                        <option value="1">Belum pernah mempelajari kaidah tajwid</option>
+                        <option value="2">Tahu sebagian istilah, namun sering ragu saat praktik membaca</option>
+                        <option value="3">Sudah memahami tajwid dasar dan ingin memperhalus makhraj serta irama tartil</option>
+                    </select>
+                </div>
+
+                <!-- Q3 -->
+                <div class="space-y-2">
+                    <label class="font-bold text-emeraldDark block">3. Apa target utama belajar Anda dalam 3 bulan ke depan?</label>
+                    <select id="pt-q3" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
+                        <option value="dasar">Bisa membaca Al-Qur'an dari nol dengan lancar</option>
+                        <option value="tajwid">Memperbaiki makhraj &amp; kelancaran tilawah sesuai tajwid</option>
+                        <option value="tahfidz">Menambah hafalan Juz 30 / surat pilihan &amp; murattal</option>
+                    </select>
+                </div>
+
+                <button onclick="calculatePlacementResult()" class="w-full bg-mustard hover:bg-mustardBright text-emeraldDark font-extrabold py-3 rounded-xl shadow transition active:scale-95">
+                    Lihat Rekomendasi Level Saya
+                </button>
+
+                <!-- Hasil Placement Test -->
+                <div id="placement-result" class="hidden bg-emerald-50 border-2 border-emeraldDark/30 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emeraldDark">Rekomendasi Level Awal:</span>
+                        <span id="pt-level-badge" class="bg-emeraldDark text-mustardBright text-xs font-extrabold px-3 py-1 rounded-full">Level 1 Dasar</span>
+                    </div>
+                    <p id="pt-level-desc" class="text-stone-700 text-xs sm:text-sm leading-relaxed"></p>
+                    <button id="pt-apply-btn" class="w-full bg-emeraldDark hover:bg-emeraldDeep text-white font-bold py-2.5 rounded-lg text-xs transition">
+                        Lanjut Jadwalkan Tes Live &amp; Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== MODAL 3: LIGHTBOX GALERI DOKUMENTASI ==================== -->
+    <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-xs p-4">
+        <div onclick="event.stopPropagation()" class="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-stone-200">
+            <button onclick="closeLightbox()" aria-label="Tutup Pratinjau Foto" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="bg-stone-900 flex items-center justify-center max-h-[75vh] overflow-hidden">
+                <img id="lightbox-img" src="" alt="Pratinjau Dokumentasi" class="w-full h-auto max-h-[75vh] object-contain">
+            </div>
+            <div class="p-4 sm:p-5 bg-white">
+                <p id="lightbox-caption" class="text-xs sm:text-sm font-semibold text-emeraldDark text-center"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== JAVASCRIPT INTERAKTIF ==================== -->
+    <script>
+        // 1. Navigasi Multi-Halaman Tanpa Reload (SPA)
+        function navigateTo(pageId) {
+            const targetPage = document.getElementById('page-' + pageId);
+            if (!targetPage) return;
+
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Tampilkan halaman yang dipilih
+            targetPage.classList.add('active');
+
+            // Update status aktif pada navigasi desktop
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.nav === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Update status aktif pada navigasi mobile
+            document.querySelectorAll('[data-nav-mobile]').forEach(btn => {
+                if (btn.dataset.navMobile === pageId) {
+                    btn.classList.add('text-emeraldDark', 'bg-emeraldDark/5', 'font-semibold');
+                    btn.classList.remove('text-stone-700', 'font-medium');
+                } else {
+                    btn.classList.remove('text-emeraldDark', 'bg-emeraldDark/5', 'font-semibold');
+                    btn.classList.add('text-stone-700', 'font-medium');
+                }
+            });
+
+            // Gulir mulus ke bagian atas halaman
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Alias fungsi sesuai kebutuhan navigasi eksternal/internal
+        function switchPage(pageId) {
+            navigateTo(pageId);
+        }
+
+        // Navigasi khusus ke bagian Kurikulum di Beranda
+        function navigateToKurikulum() {
+            navigateTo('beranda');
+            setTimeout(() => {
+                const el = document.getElementById('beranda-kurikulum');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Lightbox Galeri Dokumentasi
+        function openLightbox(imgSrc, captionText) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            if (modal && img && caption) {
+                img.src = imgSrc;
+                caption.textContent = captionText || '';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // Toggle Mobile Menu & Ganti Ikon Bars <-> Xmark
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if (icon) {
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            }
+        }
+
+        // 2. Modal Pendaftaran & Auto-Fill Paket
+        function openRegisterModal(packageName = '', categoryName = '') {
+            const modal = document.getElementById('register-modal');
+            const pkgSelect = document.getElementById('reg-package');
+            const catSelect = document.getElementById('reg-category');
+
+            if (packageName) {
+                // Cari opsi yang cocok atau tambahkan jika belum ada
+                let found = false;
+                for (let i = 0; i < pkgSelect.options.length; i++) {
+                    if (pkgSelect.options[i].value.toLowerCase().includes(packageName.toLowerCase())) {
+                        pkgSelect.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    const opt = document.createElement('option');
+                    opt.value = packageName;
+                    opt.text = packageName;
+                    pkgSelect.add(opt);
+                    pkgSelect.value = packageName;
+                }
+            }
+
+            if (categoryName) {
+                catSelect.value = categoryName;
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeRegisterModal() {
+            const modal = document.getElementById('register-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // [EDIT WHATSAPP FORMULIR] Ganti nomor tujuan pendaftaran di bawah ini (awali dengan 62)
+        const ADMIN_WHATSAPP_NUMBER = '6285134608556';
+
+        // Kirim Data Form ke WhatsApp Admin
+        function submitWhatsAppForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const category = document.getElementById('reg-category').value;
+            const mode = document.getElementById('reg-mode').value;
+            const pkg = document.getElementById('reg-package').value;
+            const schedule = document.getElementById('reg-schedule').value.trim() || 'Fleksibel (Didiskusikan dengan Admin)';
+
+            const message = 
+`Assalamu'alaikum Admin Tayassar Quranic, saya ingin mendaftar kelas belajar Al-Qur'an:
+
+*Nama Santri/Pendaftar:* ${name}
+*Kategori Usia:* ${category}
+*Metode Interaksi:* ${mode}
+*Pilihan Paket:* ${pkg}
+*Preferensi Jadwal:* ${schedule}
+
+Mohon informasi langkah selanjutnya untuk penjadwalan. Terima kasih.`;
+
+            const waUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank', 'noopener');
+            closeRegisterModal();
+        }
+
+        // 3. Modal Simulasi Placement Test Interaktif
+        function openPlacementModal() {
+            const modal = document.getElementById('placement-modal');
+            document.getElementById('placement-result').classList.add('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePlacementModal() {
+            const modal = document.getElementById('placement-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function calculatePlacementResult() {
+            const q1 = parseInt(document.getElementById('pt-q1').value, 10);
+            const q2 = parseInt(document.getElementById('pt-q2').value, 10);
+            const q3 = document.getElementById('pt-q3').value;
+            const score = q1 + q2;
+
+            let levelTitle = '';
+            let levelDesc = '';
+
+            if (score <= 3) {
+                levelTitle = 'Level 1 — Dasar (Metode Asasi)';
+                levelDesc = 'Anda direkomendasikan memulai dari penguatan pengenalan huruf hijaiyah, makhraj dasar, dan kelancaran membaca huruf sambung dengan pendampingan sabar langkah demi langkah.';
+            } else if (score <= 5) {
+                levelTitle = 'Level 2 — Menengah (Tahsin & Tajwid Praktis)';
+                levelDesc = 'Anda sudah memiliki dasar membaca yang baik! Fokus pembelajaran berikutnya adalah memantapkan hukum tajwid praktis agar bacaan semakin tartil dan percaya diri.';
+            } else {
+                levelTitle = 'Level 3 — Mahir (Tahfidz & Murattal Tartil)';
+                levelDesc = 'MasyaAllah, bacaan Anda sudah lancar! Anda siap melanjutkan ke program penyempurnaan irama murattal, tadabbur, atau akselerasi hafalan Juz 30 & surat pilihan.';
+            }
+
+            if (q3 === 'tahfidz' && score >= 4) {
+                levelDesc += ' Sesuai target Anda, sesi juga akan dilengkapi setoran hafalan terstruktur.';
+            }
+
+            document.getElementById('pt-level-badge').textContent = levelTitle;
+            document.getElementById('pt-level-desc').textContent = levelDesc;
+            document.getElementById('placement-result').classList.remove('hidden');
+
+            const applyBtn = document.getElementById('pt-apply-btn');
+            applyBtn.onclick = function() {
+                closePlacementModal();
+                openRegisterModal('Hasil Placement Test: ' + levelTitle);
+            };
+        }
+
+        // Tutup modal saat klik area luar (backdrop)
+        window.addEventListener('click', function(e) {
+            const regModal = document.getElementById('register-modal');
+            const ptModal = document.getElementById('placement-modal');
+            const lbModal = document.getElementById('lightbox-modal');
+            if (e.target === regModal) closeRegisterModal();
+            if (e.target === ptModal) closePlacementModal();
+            if (e.target === lbModal) closeLightbox();
+        });
+    </script>
+</body>
+</html>
