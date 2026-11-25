@@ -174,17 +174,60 @@
                         </div>
                     </div>
 
-                    <!-- Kanan: Kartu Gambar Hero Berbingkai Hijau Tua -->
+                    <!-- Kanan: Kartu Carousel Gambar Hero Berbingkai Hijau Tua -->
                     <div class="lg:col-span-5">
                         <div class="bg-emeraldDark p-3.5 sm:p-4 rounded-2xl shadow-xl border-2 border-mustard/60">
-                            <div class="relative rounded-xl overflow-hidden bg-stone-200 aspect-[4/3]">
-                                <!-- [EDIT GAMBAR 1: HERO BERANDA] Ganti atribut src="..." dengan link foto atau nama file lokal Anda -->
-                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" 
-                                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/114232/FFFFFF?text=Bimbingan+Al-Quran+Online';"
-                                     alt="Ustadzah mengajar Al-Qur'an online melalui laptop" 
-                                     class="w-full h-full object-cover">
-                                <div class="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center gap-1.5">
+                            <div id="hero-carousel" class="relative rounded-xl overflow-hidden bg-stone-200 aspect-[4/3] group select-none touch-pan-y cursor-grab active:cursor-grabbing">
+                                <!-- Track Slide Carousel Beranda -->
+                                <div id="hero-carousel-track" class="flex h-full transition-transform duration-500 ease-out">
+                                    <!-- Slide 1 -->
+                                    <div class="w-full h-full flex-shrink-0 relative">
+                                        <!-- [EDIT GAMBAR HERO SLIDE 1] -->
+                                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" 
+                                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/114232/FFFFFF?text=Bimbingan+Al-Quran+Online';"
+                                             alt="Ustadzah mengajar Al-Qur'an online melalui laptop" 
+                                             draggable="false"
+                                             class="w-full h-full object-cover pointer-events-none">
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-semibold">Pendampingan Privat 1-on-1 Interaktif</p>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 2 -->
+                                    <div class="w-full h-full flex-shrink-0 relative">
+                                        <!-- [EDIT GAMBAR HERO SLIDE 2] -->
+                                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" 
+                                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/114232/FFFFFF?text=Kelas+Mengaji+Anak+Ceria';"
+                                             alt="Anak belajar mengaji dengan ceria dari rumah" 
+                                             draggable="false"
+                                             class="w-full h-full object-cover pointer-events-none">
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-semibold">Metode Seru &amp; Ramah untuk Anak-Anak</p>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 3 -->
+                                    <div class="w-full h-full flex-shrink-0 relative">
+                                        <!-- [EDIT GAMBAR HERO SLIDE 3] -->
+                                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80" 
+                                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/114232/FFFFFF?text=Kelas+Tahsin+Dewasa+Privat';"
+                                             alt="Peserta dewasa memperbaiki bacaan Al-Qur'an" 
+                                             draggable="false"
+                                             class="w-full h-full object-cover pointer-events-none">
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-semibold">Kelas Tahsin &amp; Tilawah Khusus Dewasa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Badge Status Atas -->
+                                <div class="absolute top-3 right-3 z-10 bg-white/95 backdrop-blur-sm text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live 1-on-1 / Grup
+                                </div>
+
+                                <!-- Indikator Dots -->
+                                <div id="hero-carousel-dots" class="absolute bottom-2.5 right-3 z-10 flex items-center gap-1.5">
+                                    <button type="button" onclick="goToHeroSlide(0)" aria-label="Slide 1" class="w-5 h-1.5 rounded-full bg-mustardBright transition-all"></button>
+                                    <button type="button" onclick="goToHeroSlide(1)" aria-label="Slide 2" class="w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all"></button>
+                                    <button type="button" onclick="goToHeroSlide(2)" aria-label="Slide 3" class="w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all"></button>
                                 </div>
                             </div>
                             <div class="pt-3.5 pb-1 text-center">
@@ -1467,13 +1510,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-white/30 text-sm">
                     <div>
-                        <h3 class="font-bold text-lg text-tealDark">Tayassar Quranic</h3>
-                        <p class="text-xs font-bold text-white mt-1">Mengaji Privat secara online</p>
-                        <p class="text-xs text-white/95 mt-2 leading-relaxed">Platform bimbingan mengaji privat daring bersama pengajar bersertifikat untuk semua usia.</p>
+                        <h3 class="font-bold text-lg text-white">Tayassar Quranic</h3>
+                        <p class="text-xs font-semibold text-teal-950 mt-1">Mengaji Privat secara online</p>
+                        <p class="text-xs text-white/90 mt-2 leading-relaxed">Platform bimbingan mengaji privat daring bersama pengajar bersertifikat untuk semua usia.</p>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold tracking-wider uppercase text-tealDark mb-3">NAVIGASI</h4>
-                        <ul class="space-y-1.5 text-xs font-medium text-white">
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-teal-950 mb-3">NAVIGASI</h4>
+                        <ul class="space-y-1.5 text-xs text-white">
                             <li><button onclick="navigateTo('tentang')" class="hover:underline">Tentang Kami</button></li>
                             <li><button onclick="navigateTo('anak')" class="hover:underline">Kelas Anak-Anak</button></li>
                             <li><button onclick="navigateTo('dewasa')" class="hover:underline">Kelas Dewasa</button></li>
@@ -1481,8 +1524,8 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold tracking-wider uppercase text-tealDark mb-3">LOKASI &amp; MEDIA SOSIAL</h4>
-                        <p class="text-xs font-medium text-white">Ciranjang – Cianjur</p>
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-teal-950 mb-3">LOKASI &amp; MEDIA SOSIAL</h4>
+                        <p class="text-xs text-white">Ciranjang – Cianjur</p>
                         <div class="flex items-center gap-3 mt-3">
                             <a href="https://tayassarquranic.blogspot.com" target="_blank" rel="noopener" aria-label="Website" class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white hover:opacity-90">
                                 <i class="fa-brands fa-facebook-f text-xs"></i>
@@ -1498,66 +1541,129 @@
     </main>
 
 
-    <!-- ==================== HALAMAN 5: DOKUMENTASI & PORTOFOLIO ==================== -->
+    <!-- ==================== HALAMAN 5: DOKUMENTASI & PORTOFOLIO BELAJAR ==================== -->
     <main id="page-dokumentasi" class="page-section">
 
-        <!-- 1. Hero Section Portofolio & Dokumentasi -->
+        <!-- 1. Hero Banner Portofolio & Dokumentasi -->
         <section class="bg-[#0B3B2E] text-white border-l-8 border-mustard">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     <!-- Kiri: Teks & 3 Kotak Statistik -->
                     <div class="lg:col-span-7 space-y-5">
                         <span class="inline-block bg-mustard text-[#0B3B2E] text-[11px] font-extrabold tracking-widest uppercase px-3.5 py-1.5 rounded">
                             PORTOFOLIO &amp; DOKUMENTASI
                         </span>
-                        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-                            Perjalanan Belajar Tayassar Quranic
+                        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                            Perjalanan Belajar<br>Tayassar Quranic
                         </h1>
-                        <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed max-w-2xl">
-                            Rekam jejak kebersamaan, semangat belajar membaca Al-Qur'an, serta perkembangan santri kelas anak dan dewasa dari awal hingga mahir.
+                        <p class="text-emerald-100/90 text-sm sm:text-base max-w-xl leading-relaxed">
+                            Rekam jejak kebersamaan, semangat belajar membaca Al-Qur'an, serta perkembangan santri anak dan dewasa dari awal hingga mahir.
                         </p>
 
-                        <!-- 3 Kotak Statistik Ringkas -->
-                        <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-2 max-w-xl">
-                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                        <!-- 3 Kotak Statistik -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-2 max-w-lg">
+                            <div class="bg-[#124B3B] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
                                 <div class="text-lg sm:text-2xl font-extrabold text-mustardBright">400+</div>
-                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-0.5">Sesi Kelas Terlaksana</div>
+                                <div class="text-[11px] sm:text-xs text-emerald-100 mt-1">sesi kelas terlaksana</div>
                             </div>
-                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
-                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug pt-0.5">Anak &amp; Dewasa</div>
-                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-1">Peserta Aktif</div>
+                            <div class="bg-[#124B3B] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug">Anak &amp; Dewasa</div>
+                                <div class="text-[11px] sm:text-xs text-emerald-100 mt-1">peserta aktif</div>
                             </div>
-                            <div class="bg-[#0F4939] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
-                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug pt-0.5">Privat &amp; Grup</div>
-                                <div class="text-[10px] sm:text-xs text-emerald-100/80 mt-1">Metode Fleksibel</div>
+                            <div class="bg-[#124B3B] border border-emerald-700/70 rounded-xl p-3.5 sm:p-4 text-center">
+                                <div class="text-sm sm:text-lg font-extrabold text-mustardBright leading-snug">Privat &amp; Grup</div>
+                                <div class="text-[11px] sm:text-xs text-emerald-100 mt-1">metode fleksibel</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Kanan: 2 Kartu Pratinjau Foto Kolase -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div onclick="openLightbox(this.querySelector('img').src, 'Dokumentasi Kelas Privat Anak Online')" class="cursor-pointer bg-white/10 p-2 rounded-xl border border-mustard/50 shadow-lg group overflow-hidden">
-                            <div class="relative rounded-lg overflow-hidden aspect-[16/9] bg-stone-800">
-                                <!-- [EDIT GAMBAR DOKUMENTASI: HERO KOLASE 1] -->
-                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
-                                     onerror="this.onerror=null;this.src='https://placehold.co/800x450/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Anak';"
-                                     alt="Dokumentasi Kelas Privat Anak Online"
-                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                    <span class="bg-white/90 text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Foto</span>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Kanan: Carousel Auto-Slide Video & Gambar Dokumentasi -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white/10 p-2.5 sm:p-3 rounded-2xl border border-mustard/60 shadow-xl">
+                            <div id="doc-carousel" class="relative rounded-xl overflow-hidden aspect-[16/10] bg-stone-900 group select-none touch-pan-y cursor-grab active:cursor-grabbing">
+                                <!-- Track Slide Dokumentasi (Video & Gambar) -->
+                                <div id="doc-carousel-track" class="flex h-full transition-transform duration-500 ease-out">
+                                    <!-- Slide 1: Video Dokumentasi Kelas -->
+                                    <div onclick="openMediaLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-student-studying-at-home-with-laptop-4726-large.mp4', 'Video Cuplikan Sesi Belajar Al-Qur\'an Online Interaktif')" class="w-full h-full flex-shrink-0 relative cursor-pointer">
+                                        <!-- [EDIT VIDEO DOKUMENTASI 1] Ganti atribut src video MP4 atau poster gambar Anda -->
+                                        <video class="w-full h-full object-cover pointer-events-none" muted loop playsinline autoplay poster="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80">
+                                            <source src="https://assets.mixkit.co/videos/preview/mixkit-student-studying-at-home-with-laptop-4726-large.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                                            <i class="fa-solid fa-video"></i> VIDEO SESI KELAS
+                                        </div>
+                                        <div class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition flex items-center justify-center">
+                                            <span class="w-12 h-12 rounded-full bg-mustard text-[#0B3B2E] flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
+                                                <i class="fa-solid fa-play text-base ml-0.5"></i>
+                                            </span>
+                                        </div>
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-bold">Video Cuplikan Sesi Belajar Online</p>
+                                            <p class="text-emerald-200 text-[10px]">Klik untuk memutar layar penuh</p>
+                                        </div>
+                                    </div>
 
-                        <div onclick="openLightbox(this.querySelector('img').src, 'Dokumentasi Materi Tajwid & Makhraj Interaktif')" class="cursor-pointer bg-white/10 p-2 rounded-xl border border-mustard/50 shadow-lg group overflow-hidden">
-                            <div class="relative rounded-lg overflow-hidden aspect-[16/9] bg-stone-800">
-                                <!-- [EDIT GAMBAR DOKUMENTASI: HERO KOLASE 2] -->
-                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
-                                     onerror="this.onerror=null;this.src='https://placehold.co/800x450/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Tajwid';"
-                                     alt="Dokumentasi Materi Tajwid & Makhraj Interaktif"
-                                     class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                    <span class="bg-white/90 text-emeraldDark text-xs font-bold px-3 py-1.5 rounded-full shadow"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Foto</span>
+                                    <!-- Slide 2: Gambar Dokumentasi Kelas Anak -->
+                                    <div onclick="openMediaLightbox('image', this.querySelector('img').src, 'Dokumentasi Kelas Privat Anak Online — Belajar Huruf & Tajwid')" class="w-full h-full flex-shrink-0 relative cursor-pointer">
+                                        <!-- [EDIT GAMBAR DOKUMENTASI SLIDE 2] -->
+                                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                                             onerror="this.onerror=null;this.src='https://placehold.co/800x500/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Anak';"
+                                             alt="Dokumentasi Kelas Privat Anak Online"
+                                             draggable="false"
+                                             class="w-full h-full object-cover pointer-events-none">
+                                        <div class="absolute top-3 left-3 bg-emeraldDark/90 text-mustardBright text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                                            <i class="fa-solid fa-image"></i> GALERI FOTO
+                                        </div>
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-bold">Dokumentasi Kelas Privat Anak</p>
+                                            <p class="text-emerald-200 text-[10px]">Klik untuk memperbesar foto</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 3: Video Dokumentasi Tahsin & Makhraj -->
+                                    <div onclick="openMediaLightbox('video', 'https://assets.mixkit.co/videos/preview/mixkit-woman-studying-on-her-laptop-at-home-4723-large.mp4', 'Video Bimbingan Tahsin & Perbaikan Makhraj Dewasa')" class="w-full h-full flex-shrink-0 relative cursor-pointer">
+                                        <!-- [EDIT VIDEO DOKUMENTASI 2] Ganti atribut src video MP4 atau poster gambar Anda -->
+                                        <video class="w-full h-full object-cover pointer-events-none" muted loop playsinline autoplay poster="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80">
+                                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-studying-on-her-laptop-at-home-4723-large.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="absolute top-3 left-3 bg-rose-600 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                                            <i class="fa-solid fa-video"></i> VIDEO TAHSIN
+                                        </div>
+                                        <div class="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition flex items-center justify-center">
+                                            <span class="w-12 h-12 rounded-full bg-mustard text-[#0B3B2E] flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
+                                                <i class="fa-solid fa-play text-base ml-0.5"></i>
+                                            </span>
+                                        </div>
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-bold">Video Bimbingan Tahsin &amp; Makhraj</p>
+                                            <p class="text-emerald-200 text-[10px]">Klik untuk memutar layar penuh</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 4: Gambar Dokumentasi Materi Tajwid -->
+                                    <div onclick="openMediaLightbox('image', this.querySelector('img').src, 'Dokumentasi Kelas Tahsin & Materi Tajwid Interaktif')" class="w-full h-full flex-shrink-0 relative cursor-pointer">
+                                        <!-- [EDIT GAMBAR DOKUMENTASI SLIDE 4] -->
+                                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
+                                             onerror="this.onerror=null;this.src='https://placehold.co/800x500/0B3B2E/FFFFFF?text=Dokumentasi+Kelas+Dewasa';"
+                                             alt="Dokumentasi Kelas Tahsin & Materi Tajwid"
+                                             draggable="false"
+                                             class="w-full h-full object-cover pointer-events-none">
+                                        <div class="absolute top-3 left-3 bg-emeraldDark/90 text-mustardBright text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                                            <i class="fa-solid fa-image"></i> GALERI FOTO
+                                        </div>
+                                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3.5 pt-8">
+                                            <p class="text-white text-xs font-bold">Dokumentasi Kelas Tahsin Dewasa</p>
+                                            <p class="text-emerald-200 text-[10px]">Klik untuk memperbesar foto</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Indikator Dots -->
+                                <div id="doc-carousel-dots" class="absolute bottom-3 right-3 z-10 flex items-center gap-1.5">
+                                    <button type="button" onclick="event.stopPropagation(); goToDocSlide(0)" aria-label="Slide 1" class="w-5 h-1.5 rounded-full bg-mustardBright transition-all"></button>
+                                    <button type="button" onclick="event.stopPropagation(); goToDocSlide(1)" aria-label="Slide 2" class="w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all"></button>
+                                    <button type="button" onclick="event.stopPropagation(); goToDocSlide(2)" aria-label="Slide 3" class="w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all"></button>
+                                    <button type="button" onclick="event.stopPropagation(); goToDocSlide(3)" aria-label="Slide 4" class="w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all"></button>
                                 </div>
                             </div>
                         </div>
@@ -1656,68 +1762,138 @@
         <!-- 3. Section 2: Dokumentasi Program Mengaji Anak-Anak -->
         <section class="py-14 lg:py-20 bg-[#F4F3EE] border-b border-stone-200/80">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
-                    GALERI KELAS ANAK
-                </span>
-                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
-                    Dokumentasi Program Mengaji Anak-Anak
-                </h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
-                    Momen keceriaan murid cilik saat mengenal huruf hijaiyah, membaca Iqra, dan mengaji Juz 30.
-                </p>
+                <div class="mb-8">
+                    <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                        GALERI KELAS ANAK
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                        Dokumentasi Program Mengaji Anak-Anak
+                    </h2>
+                    <p class="text-stone-600 text-sm sm:text-base mt-1.5">
+                        Momen keceriaan murid cilik saat mengenal huruf hijaiyah, membaca Iqra, dan mengaji Juz 30.
+                    </p>
+                </div>
 
-                <!-- Grid 3 Kartu Foto Berbingkai -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Kartu 1 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi Interaktif Pengenalan Huruf — Belajar hijaiyah menggunakan kartu warna & layar interaktif.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 1] -->
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Sesi+Interaktif+Huruf';"
-                                 alt="Sesi Interaktif Pengenalan Huruf"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                <!-- Carousel Galeri Kelas Anak (6 Kartu - Geser Touch/Mouse & Auto-Slide) -->
+                <div id="anak-doc-carousel" class="relative overflow-hidden select-none touch-pan-y cursor-grab active:cursor-grabbing">
+                    <div id="anak-doc-track" class="flex transition-transform duration-500 ease-out">
+                        <!-- Kartu 1 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Sesi Interaktif Pengenalan Huruf — Belajar hijaiyah menggunakan kartu warna & layar interaktif.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 1] -->
+                                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Sesi+Interaktif+Huruf';"
+                                         alt="Sesi Interaktif Pengenalan Huruf"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi Interaktif Pengenalan Huruf</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Belajar hijaiyah menggunakan kartu warna &amp; layar interaktif.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi Interaktif Pengenalan Huruf</h3>
-                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
-                                Belajar hijaiyah menggunakan kartu warna &amp; layar interaktif.
-                            </p>
+
+                        <!-- Kartu 2 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Tahsin & Tilawah Anak — Pelatihan pengucapan huruf dengan suasana ceria.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 2] -->
+                                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Tahsin+Anak';"
+                                         alt="Bimbingan Tahsin & Tilawah Anak"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Tahsin &amp; Tilawah Anak</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Pelatihan pengucapan huruf dengan suasana ceria.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 3 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Mengaji Dasar — Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 3] -->
+                                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Mengaji+Dasar';"
+                                         alt="Bimbingan Mengaji Dasar"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Mengaji Dasar</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 4 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Latihan Membaca Iqro Jilid 1–6 — Pendampingan sabar melafalkan harakat fathah, kasrah, dan dhammah.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 4] -->
+                                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Latihan+Membaca+Iqro';"
+                                         alt="Latihan Membaca Iqro Jilid 1-6"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Latihan Membaca Iqro Jilid 1–6</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Pendampingan sabar melafalkan harakat dan tanda baca secara bertahap.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 5 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Praktik Doa Harian & Adab Islami — Pembiasaan doa sebelum belajar, wudhu, dan bacaan shalat.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 5] -->
+                                    <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Praktik+Doa+dan+Adab';"
+                                         alt="Praktik Doa Harian & Adab Islami"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Praktik Doa Harian &amp; Adab Islami</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Pembiasaan doa sehari-hari dan tata cara ibadah praktis sejak usia dini.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 6 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Evaluasi Kenaikan Jilid & Juz 30 — Apresiasi capaian santri cilik bersama pengajar dan orang tua.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 6] -->
+                                    <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Evaluasi+Kenaikan+Jilid';"
+                                         alt="Evaluasi Kenaikan Jilid & Juz 30"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1 flex-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Evaluasi Kenaikan Jilid &amp; Juz 30</h3>
+                                    <p class="text-stone-600 text-xs mt-1 leading-relaxed">
+                                        Apresiasi capaian santri cilik saat berhasil naik ke jenjang berikutnya.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Kartu 2 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Tahsin & Tilawah Anak — Pelatihan pengucapan huruf dengan suasana ceria.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 2] -->
-                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Tahsin+Anak';"
-                                 alt="Bimbingan Tahsin & Tilawah Anak"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Tahsin &amp; Tilawah Anak</h3>
-                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
-                                Pelatihan pengucapan huruf dengan suasana ceria.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Kartu 3 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Bimbingan Mengaji Dasar — Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: ANAK 3] -->
-                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x450/114232/FFFFFF?text=Bimbingan+Mengaji+Dasar';"
-                                 alt="Bimbingan Mengaji Dasar"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Bimbingan Mengaji Dasar</h3>
-                            <p class="text-stone-600 text-xs mt-1 leading-relaxed">
-                                Latihan menyambung huruf dan membaca dalam kelas privat/grup agar anak fokus dan percaya diri.
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Indikator Dots Galeri Anak -->
+                    <div id="anak-doc-dots" class="flex items-center justify-center gap-2 mt-6"></div>
                 </div>
 
                 <!-- Kotak Sorotan Bawah -->
@@ -1734,59 +1910,126 @@
         <!-- 4. Section 3: Dokumentasi Program Hafalan -->
         <section class="py-14 lg:py-20 bg-creamBg border-b border-stone-200/80">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
-                    GALERI TAHFIDZUL QUR'AN
-                </span>
-                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
-                    Dokumentasi Program Hafalan
-                </h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-1.5 mb-8">
-                    Momen keseriusan murid saat menghafal Juz 30 dan Surat Pilihan.
-                </p>
+                <div class="mb-8">
+                    <span class="inline-block bg-[#E6EFEA] text-emeraldDark text-[11px] font-bold tracking-widest uppercase px-3.5 py-1 rounded">
+                        GALERI TAHFIDZUL QUR'AN
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-emeraldDark mt-2">
+                        Dokumentasi Program Hafalan
+                    </h2>
+                    <p class="text-stone-600 text-sm sm:text-base mt-1.5">
+                        Momen keseriusan murid saat menghafal Juz 30 dan Surat Pilihan.
+                    </p>
+                </div>
 
-                <!-- Grid 3 Kartu Foto Berbingkai -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Kartu 1 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Anak — Setoran hafalan surat pendek Juz 30')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 1] -->
-                            <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Anak';"
-                                 alt="Sesi PR Hafalan Anak"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                <!-- Carousel Galeri Hafalan (6 Kartu - Geser Touch/Mouse & Auto-Slide) -->
+                <div id="hafalan-doc-carousel" class="relative overflow-hidden select-none touch-pan-y cursor-grab active:cursor-grabbing">
+                    <div id="hafalan-doc-track" class="flex transition-transform duration-500 ease-out">
+                        <!-- Kartu 1 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Anak — Setoran hafalan surat pendek Juz 30')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 1] -->
+                                    <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Anak';"
+                                         alt="Sesi PR Hafalan Anak"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Anak</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Setoran hafalan surat-surat pendek Juz 30 secara rutin.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Anak</h3>
+
+                        <!-- Kartu 2 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Dewasa — Murojaah & setoran ayat pilihan')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 2] -->
+                                    <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Dewasa';"
+                                         alt="Sesi PR Hafalan Dewasa"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Dewasa</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Muroja'ah &amp; setoran ayat pilihan untuk bacaan shalat.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 3 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Setoran Juz Amma Tartil — Evaluasi kelancaran hafalan bersama pengajar')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 3] -->
+                                    <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Setoran+Juz+Amma+Tartil';"
+                                         alt="Setoran Juz Amma Tartil"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Setoran Juz 'Amma Tartil</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Evaluasi kelancaran dan ketepatan tajwid hafalan santri.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 4 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Murojaah Pekanan Santri — Mengulang hafalan lama agar tetap kuat dan mutqin')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 4] -->
+                                    <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Murojaah+Pekanan+Santri';"
+                                         alt="Murojaah Pekanan Santri"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Muroja'ah Pekanan Santri</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Mengulang hafalan lama agar tetap kuat dan melekat.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 5 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Hafalan Surat Pilihan (Al-Mulk & Al-Kahfi) — Bimbingan hafalan ayat-ayat keutamaan harian')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 5] -->
+                                    <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Hafalan+Surat+Pilihan';"
+                                         alt="Hafalan Surat Pilihan"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Hafalan Surat Pilihan</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Bimbingan menghafal surat Al-Mulk, Al-Waqi'ah, &amp; Al-Kahfi.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu 6 -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-2 sm:px-3">
+                            <div onclick="openLightbox(this.querySelector('img').src, 'Ujian Tasmi Juz 30 — Simulasi setoran hafalan sekali duduk bersama penguji')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group h-full flex flex-col">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
+                                    <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 6] -->
+                                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Ujian+Tasmi+Juz+30';"
+                                         alt="Ujian Tasmi Juz 30"
+                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <div class="pt-3.5 px-1 pb-1">
+                                    <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Ujian Tasmi' Juz 30</h3>
+                                    <p class="text-stone-600 text-xs mt-1">Simulasi setoran hafalan terstruktur menjelang kenaikan level.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Kartu 2 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Dewasa — Murojaah & setoran ayat pilihan')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 2] -->
-                            <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Dewasa';"
-                                 alt="Sesi PR Hafalan Dewasa"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Dewasa</h3>
-                        </div>
-                    </div>
-
-                    <!-- Kartu 3 -->
-                    <div onclick="openLightbox(this.querySelector('img').src, 'Sesi PR Hafalan Anak — Evaluasi kelancaran hafalan bersama pengajar')" class="cursor-pointer bg-white rounded-2xl p-3.5 shadow-sm border border-mustard/50 hover-lift group">
-                        <div class="relative rounded-xl overflow-hidden aspect-[4/4] bg-stone-200">
-                            <!-- [EDIT GAMBAR DOKUMENTASI: HAFALAN 3] -->
-                            <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=800&q=80"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/114232/FFFFFF?text=Sesi+PR+Hafalan+Anak';"
-                                 alt="Sesi PR Hafalan Anak"
-                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        </div>
-                        <div class="pt-3.5 px-1 pb-1">
-                            <h3 class="font-bold text-emeraldDark text-sm sm:text-base">Sesi PR Hafalan Anak</h3>
-                        </div>
-                    </div>
+                    <!-- Indikator Dots Galeri Hafalan -->
+                    <div id="hafalan-doc-dots" class="flex items-center justify-center gap-2 mt-6"></div>
                 </div>
 
                 <div class="mt-8 pt-4 border-t border-stone-200/70 text-[11px] text-stone-400">
@@ -1978,22 +2221,21 @@
                     <label class="block font-semibold text-stone-700 mb-1">Pilihan Paket / Program *</label>
                     <select id="reg-package" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark outline-none bg-white">
                         <option value="Sesi Awal Gratis & Placement Test">Sesi Awal Gratis &amp; Placement Test</option>
-                        <option value="Skema Tahsin (Dasar) - Rp 200.000/bln">Skema Tahsin (Dasar) - Rp 200.000/bln (4 Sesi)</option>
-                        <option value="Skema Juz Amma (Reguler) - Rp 400.000/bln">Skema Juz 'Amma (Reguler) - Rp 400.000/bln (8 Sesi)</option>
-                        <option value="Skema Khotmil Quran (Intensif) - Rp 800.000/bln">Skema Khotmil Qur'an (Intensif) - Rp 800.000/bln (16 Sesi)</option>
-                        <option value="Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln">Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln (20 Sesi)</option>
-                        <option value="Kelas Privat Anak-Anak">Kelas Privat Anak-Anak</option>
+                        <option value="Skema Tahsin (Dasar) - Rp 200.000/bln">Skema Tahsin (Dasar) — Rp 200.000 / Bulan (4 Sesi)</option>
+                        <option value="Skema Juz Amma (Reguler) - Rp 400.000/bln">Skema Juz 'Amma (Reguler) — Rp 400.000 / Bulan (8 Sesi)</option>
+                        <option value="Skema Khotmil Quran (Intensif) - Rp 800.000/bln">Skema Khotmil Qur'an (Intensif) — Rp 800.000 / Bulan (16 Sesi)</option>
+                        <option value="Skema Tahfidz Plus (Eksklusif) - Rp 1.000.000/bln">Skema Tahfidz Plus (Eksklusif) — Rp 1.000.000 / Bulan (20 Sesi)</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block font-semibold text-stone-700 mb-1">Preferensi Hari &amp; Waktu Belajar</label>
-                    <input type="text" id="reg-schedule" placeholder="Contoh: Senin & Kamis Ba'da Maghrib / Akhir Pekan" 
-                           class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark focus:ring-2 focus:ring-emeraldDark/20 outline-none">
+                    <label class="block font-semibold text-stone-700 mb-1">Preferensi Hari &amp; Jam Belajar</label>
+                    <input type="text" id="reg-schedule" placeholder="Contoh: Senin & Kamis pukul 16.00 WIB atau Malam ba'da Isya" 
+                           class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-emeraldDark outline-none">
                 </div>
 
                 <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                    <button type="submit" class="w-full bg-emeraldDark hover:bg-emeraldDeep text-white font-bold py-3 px-5 rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <button type="submit" class="flex-1 bg-emeraldDark hover:bg-emeraldDeep text-white font-bold py-3 px-5 rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
                         <i class="fa-brands fa-whatsapp text-lg text-[#25D366]"></i>
                         Kirim Pendaftaran via WhatsApp
                     </button>
@@ -2003,82 +2245,76 @@
     </div>
 
 
-    <!-- ==================== MODAL 2: SIMULASI PLACEMENT TEST INTERAKTIF ==================== -->
+    <!-- ==================== MODAL 2: PLACEMENT TEST INTERAKTIF ==================== -->
     <div id="placement-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden border border-stone-200 my-8">
             <div class="bg-emeraldDark text-white px-6 py-5 flex items-center justify-between">
                 <div>
                     <span class="text-[11px] font-bold tracking-widest text-mustardBright uppercase">PEMETAAN LEVEL SANTRI</span>
-                    <h3 class="font-serif text-xl font-bold mt-0.5">Simulasi Placement Test Singkat</h3>
+                    <h3 class="font-serif text-xl font-bold mt-0.5">Simulasi Placement Test</h3>
                 </div>
                 <button onclick="closePlacementModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <div id="placement-body" class="p-6 space-y-5 text-sm">
-                <p class="text-stone-600 text-xs sm:text-sm">
-                    Jawab 3 pertanyaan singkat berikut untuk mengetahui rekomendasi level awal belajar Al-Qur'an Anda di Tayassar Quranic:
-                </p>
+            <div class="p-6 space-y-4 text-sm">
+                <p class="text-stone-600 text-xs sm:text-sm">Jawab 3 pertanyaan singkat di bawah untuk mengetahui rekomendasi level kurikulum awal Anda:</p>
 
-                <!-- Q1 -->
-                <div class="space-y-2">
-                    <label class="font-bold text-emeraldDark block">1. Bagaimana kemampuan mengenal huruf hijaiyah &amp; tanda baca (harakat) saat ini?</label>
-                    <select id="pt-q1" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
-                        <option value="1">Belum hafal seluruh huruf hijaiyah / masih sering tertukar</option>
-                        <option value="2">Sudah hafal huruf hijaiyah &amp; harakat dasar, tapi belum lancar menyambung</option>
-                        <option value="3">Sudah lancar membaca huruf sambung dan ayat Al-Qur'an</option>
+                <div>
+                    <label class="block font-semibold text-stone-800 mb-1.5">1. Bagaimana kemampuan membaca huruf hijaiyah saat ini?</label>
+                    <select id="pt-q1" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 bg-white outline-none">
+                        <option value="1">Belum mengenal huruf hijaiyah / baru mulai dari nol</option>
+                        <option value="2">Sudah mengenal huruf, tapi masih terbata-bata menyambung ayat</option>
+                        <option value="3">Sudah lancar membaca Al-Qur'an, ingin memperbaiki tajwid &amp; irama</option>
                     </select>
                 </div>
 
-                <!-- Q2 -->
-                <div class="space-y-2">
-                    <label class="font-bold text-emeraldDark block">2. Bagaimana pemahaman hukum bacaan Tajwid (Nun Sukun, Mim Sukun, Mad)?</label>
-                    <select id="pt-q2" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
-                        <option value="1">Belum pernah mempelajari kaidah tajwid</option>
-                        <option value="2">Tahu sebagian istilah, namun sering ragu saat praktik membaca</option>
-                        <option value="3">Sudah memahami tajwid dasar dan ingin memperhalus makhraj serta irama tartil</option>
+                <div>
+                    <label class="block font-semibold text-stone-800 mb-1.5">2. Pemahaman kaidah tajwid (Nun Sukun, Mad, Makhraj)?</label>
+                    <select id="pt-q2" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 bg-white outline-none">
+                        <option value="1">Belum memahami hukum bacaan tajwid</option>
+                        <option value="2">Tahu sebagian dasar, namun sering ragu saat praktik membaca</option>
+                        <option value="3">Sudah paham dasar tajwid dan siap tahsin lanjutan / setoran hafalan</option>
                     </select>
                 </div>
 
-                <!-- Q3 -->
-                <div class="space-y-2">
-                    <label class="font-bold text-emeraldDark block">3. Apa target utama belajar Anda dalam 3 bulan ke depan?</label>
-                    <select id="pt-q3" class="w-full p-2.5 rounded-xl border border-stone-300 bg-stone-50 outline-none">
-                        <option value="dasar">Bisa membaca Al-Qur'an dari nol dengan lancar</option>
-                        <option value="tajwid">Memperbaiki makhraj &amp; kelancaran tilawah sesuai tajwid</option>
-                        <option value="tahfidz">Menambah hafalan Juz 30 / surat pilihan &amp; murattal</option>
+                <div>
+                    <label class="block font-semibold text-stone-800 mb-1.5">3. Target utama pembelajaran Anda?</label>
+                    <select id="pt-q3" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 bg-white outline-none">
+                        <option value="dasar">Bisa membaca Al-Qur'an dengan lancar dari dasar</option>
+                        <option value="tahsin">Memperbaiki bacaan shalat &amp; tilawah tartil (Tahsin)</option>
+                        <option value="tahfidz">Menghafal Juz 30 &amp; surat pilihan (Tahfizul Qur'an)</option>
                     </select>
                 </div>
 
-                <button onclick="calculatePlacementResult()" class="w-full bg-mustard hover:bg-mustardBright text-emeraldDark font-extrabold py-3 rounded-xl shadow transition active:scale-95">
-                    Lihat Rekomendasi Level Saya
-                </button>
-
-                <!-- Hasil Placement Test -->
-                <div id="placement-result" class="hidden bg-emerald-50 border-2 border-emeraldDark/30 rounded-xl p-5 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emeraldDark">Rekomendasi Level Awal:</span>
-                        <span id="pt-level-badge" class="bg-emeraldDark text-mustardBright text-xs font-extrabold px-3 py-1 rounded-full">Level 1 Dasar</span>
-                    </div>
-                    <p id="pt-level-desc" class="text-stone-700 text-xs sm:text-sm leading-relaxed"></p>
-                    <button id="pt-apply-btn" class="w-full bg-emeraldDark hover:bg-emeraldDeep text-white font-bold py-2.5 rounded-lg text-xs transition">
-                        Lanjut Jadwalkan Tes Live &amp; Daftar
+                <!-- Hasil Rekomendasi -->
+                <div id="placement-result" class="hidden bg-[#EFECE3] border border-mustard/50 rounded-xl p-4 space-y-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-mustard">REKOMENDASI LEVEL ANDA:</div>
+                    <div id="pt-level-badge" class="text-base font-extrabold text-emeraldDark"></div>
+                    <p id="pt-level-desc" class="text-xs text-stone-700 leading-relaxed"></p>
+                    <button id="pt-apply-btn" class="mt-2 w-full bg-emeraldDark text-white font-bold py-2.5 rounded-lg text-xs hover:bg-emeraldDeep transition">
+                        Lanjut Jadwalkan Tes Bersama Pengajar
                     </button>
                 </div>
+
+                <button onclick="calculatePlacementResult()" class="w-full bg-mustard hover:bg-mustardBright text-emeraldDark font-extrabold py-3 rounded-xl shadow transition">
+                    Lihat Hasil Pemetaan Level
+                </button>
             </div>
         </div>
     </div>
 
 
-    <!-- ==================== MODAL 3: LIGHTBOX GALERI DOKUMENTASI ==================== -->
+    <!-- ==================== MODAL 3: LIGHTBOX GALERI DOKUMENTASI (FOTO & VIDEO) ==================== -->
     <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-xs p-4">
         <div onclick="event.stopPropagation()" class="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-stone-200">
-            <button onclick="closeLightbox()" aria-label="Tutup Pratinjau Foto" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition">
+            <button onclick="closeLightbox()" aria-label="Tutup Pratinjau Media" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/65 hover:bg-black text-white flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="bg-stone-900 flex items-center justify-center max-h-[75vh] overflow-hidden">
                 <img id="lightbox-img" src="" alt="Pratinjau Dokumentasi" class="w-full h-auto max-h-[75vh] object-contain">
+                <video id="lightbox-video" controls playsinline class="hidden w-full max-h-[75vh] bg-black"></video>
             </div>
             <div class="p-4 sm:p-5 bg-white">
                 <p id="lightbox-caption" class="text-xs sm:text-sm font-semibold text-emeraldDark text-center"></p>
@@ -2089,6 +2325,328 @@
 
     <!-- ==================== JAVASCRIPT INTERAKTIF ==================== -->
     <script>
+        // 0. Carousel Otomatis Halaman Beranda & Dokumentasi
+        let heroSlideIndex = 0;
+        const heroTotalSlides = 3;
+        let heroAutoTimer = null;
+
+        function updateHeroCarousel() {
+            const track = document.getElementById('hero-carousel-track');
+            const dotsContainer = document.getElementById('hero-carousel-dots');
+            if (!track) return;
+            track.style.transform = `translateX(-${heroSlideIndex * 100}%)`;
+            if (dotsContainer) {
+                Array.from(dotsContainer.children).forEach((dot, idx) => {
+                    if (idx === heroSlideIndex) {
+                        dot.className = 'w-5 h-1.5 rounded-full bg-mustardBright transition-all';
+                    } else {
+                        dot.className = 'w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all';
+                    }
+                });
+            }
+        }
+
+        function moveHeroSlide(step) {
+            heroSlideIndex = (heroSlideIndex + step + heroTotalSlides) % heroTotalSlides;
+            updateHeroCarousel();
+            resetHeroTimer();
+        }
+
+        function goToHeroSlide(index) {
+            heroSlideIndex = index;
+            updateHeroCarousel();
+            resetHeroTimer();
+        }
+
+        function resetHeroTimer() {
+            if (heroAutoTimer) clearInterval(heroAutoTimer);
+            heroAutoTimer = setInterval(() => {
+                heroSlideIndex = (heroSlideIndex + 1) % heroTotalSlides;
+                updateHeroCarousel();
+            }, 4000);
+        }
+
+        let docSlideIndex = 0;
+        const docTotalSlides = 4;
+        let docAutoTimer = null;
+
+        function updateDocCarousel() {
+            const track = document.getElementById('doc-carousel-track');
+            const dotsContainer = document.getElementById('doc-carousel-dots');
+            if (!track) return;
+            track.style.transform = `translateX(-${docSlideIndex * 100}%)`;
+            if (dotsContainer) {
+                Array.from(dotsContainer.children).forEach((dot, idx) => {
+                    if (idx === docSlideIndex) {
+                        dot.className = 'w-5 h-1.5 rounded-full bg-mustardBright transition-all';
+                    } else {
+                        dot.className = 'w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all';
+                    }
+                });
+            }
+        }
+
+        function moveDocSlide(step) {
+            docSlideIndex = (docSlideIndex + step + docTotalSlides) % docTotalSlides;
+            updateDocCarousel();
+            resetDocTimer();
+        }
+
+        function goToDocSlide(index) {
+            docSlideIndex = index;
+            updateDocCarousel();
+            resetDocTimer();
+        }
+
+        function resetDocTimer() {
+            if (docAutoTimer) clearInterval(docAutoTimer);
+            docAutoTimer = setInterval(() => {
+                docSlideIndex = (docSlideIndex + 1) % docTotalSlides;
+                updateDocCarousel();
+            }, 4500);
+        }
+
+        // Carousel Galeri Dokumentasi Kelas Anak & Program Hafalan (Auto-Slide Responsif)
+        let anakDocIndex = 0;
+        const anakDocTotal = 6;
+        let anakDocTimer = null;
+
+        function getVisibleCardsCount() {
+            return window.innerWidth >= 768 ? 3 : 1;
+        }
+
+        function updateAnakDocCarousel() {
+            const track = document.getElementById('anak-doc-track');
+            const dotsContainer = document.getElementById('anak-doc-dots');
+            if (!track) return;
+
+            const visible = getVisibleCardsCount();
+            const maxIndex = Math.max(0, anakDocTotal - visible);
+            if (anakDocIndex > maxIndex) anakDocIndex = 0;
+
+            const stepPercent = 100 / visible;
+            track.style.transform = `translateX(-${anakDocIndex * stepPercent}%)`;
+
+            if (dotsContainer) {
+                const totalSteps = maxIndex + 1;
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSteps; i++) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.setAttribute('aria-label', `Slide Galeri Anak ${i + 1}`);
+                    btn.className = i === anakDocIndex
+                        ? 'w-6 h-2 rounded-full bg-emeraldDark transition-all'
+                        : 'w-2 h-2 rounded-full bg-stone-300 hover:bg-emeraldDark/60 transition-all';
+                    btn.onclick = () => goToAnakDocSlide(i);
+                    dotsContainer.appendChild(btn);
+                }
+            }
+        }
+
+        function moveAnakDocSlide(step) {
+            const visible = getVisibleCardsCount();
+            const maxIndex = Math.max(0, anakDocTotal - visible);
+            anakDocIndex = (anakDocIndex + step + (maxIndex + 1)) % (maxIndex + 1);
+            updateAnakDocCarousel();
+            resetAnakDocTimer();
+        }
+
+        function goToAnakDocSlide(index) {
+            anakDocIndex = index;
+            updateAnakDocCarousel();
+            resetAnakDocTimer();
+        }
+
+        function resetAnakDocTimer() {
+            if (anakDocTimer) clearInterval(anakDocTimer);
+            anakDocTimer = setInterval(() => {
+                moveAnakDocSlide(1);
+            }, 3800);
+        }
+
+        let hafalanDocIndex = 0;
+        const hafalanDocTotal = 6;
+        let hafalanDocTimer = null;
+
+        function updateHafalanDocCarousel() {
+            const track = document.getElementById('hafalan-doc-track');
+            const dotsContainer = document.getElementById('hafalan-doc-dots');
+            if (!track) return;
+
+            const visible = getVisibleCardsCount();
+            const maxIndex = Math.max(0, hafalanDocTotal - visible);
+            if (hafalanDocIndex > maxIndex) hafalanDocIndex = 0;
+
+            const stepPercent = 100 / visible;
+            track.style.transform = `translateX(-${hafalanDocIndex * stepPercent}%)`;
+
+            if (dotsContainer) {
+                const totalSteps = maxIndex + 1;
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSteps; i++) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.setAttribute('aria-label', `Slide Galeri Hafalan ${i + 1}`);
+                    btn.className = i === hafalanDocIndex
+                        ? 'w-6 h-2 rounded-full bg-emeraldDark transition-all'
+                        : 'w-2 h-2 rounded-full bg-stone-300 hover:bg-emeraldDark/60 transition-all';
+                    btn.onclick = () => goToHafalanDocSlide(i);
+                    dotsContainer.appendChild(btn);
+                }
+            }
+        }
+
+        function moveHafalanDocSlide(step) {
+            const visible = getVisibleCardsCount();
+            const maxIndex = Math.max(0, hafalanDocTotal - visible);
+            hafalanDocIndex = (hafalanDocIndex + step + (maxIndex + 1)) % (maxIndex + 1);
+            updateHafalanDocCarousel();
+            resetHafalanDocTimer();
+        }
+
+        function goToHafalanDocSlide(index) {
+            hafalanDocIndex = index;
+            updateHafalanDocCarousel();
+            resetHafalanDocTimer();
+        }
+
+        function resetHafalanDocTimer() {
+            if (hafalanDocTimer) clearInterval(hafalanDocTimer);
+            hafalanDocTimer = setInterval(() => {
+                moveHafalanDocSlide(1);
+            }, 4200);
+        }
+
+        // Aktifkan Gesture Geser (Touch Swipe & Mouse Drag) untuk semua Carousel
+        function attachSwipeGesture(containerId, onPrev, onNext) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            let startX = 0;
+            let startY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isDragging = false;
+            let hasMoved = false;
+
+            const onStart = (clientX, clientY) => {
+                startX = clientX;
+                startY = clientY;
+                currentX = clientX;
+                currentY = clientY;
+                isDragging = true;
+                hasMoved = false;
+            };
+
+            const onMove = (clientX, clientY, e) => {
+                if (!isDragging) return;
+                currentX = clientX;
+                currentY = clientY;
+                const dx = Math.abs(currentX - startX);
+                const dy = Math.abs(currentY - startY);
+                if (dx > 8) {
+                    hasMoved = true;
+                    if (e && e.cancelable && dx > dy) {
+                        e.preventDefault();
+                    }
+                }
+            };
+
+            const onEnd = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                const diffX = currentX - startX;
+                if (Math.abs(diffX) > 30) {
+                    if (diffX < 0) {
+                        onNext();
+                    } else {
+                        onPrev();
+                    }
+                }
+                setTimeout(() => { hasMoved = false; }, 60);
+            };
+
+            // Touch events (HP Android / iOS)
+            container.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    onStart(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: true });
+            container.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) {
+                    onMove(e.touches[0].clientX, e.touches[0].clientY, e);
+                }
+            }, { passive: false });
+            container.addEventListener('touchend', onEnd);
+            container.addEventListener('touchcancel', () => { isDragging = false; });
+
+            // Mouse drag events (Desktop)
+            container.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                e.preventDefault();
+                onStart(e.clientX, e.clientY);
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) onMove(e.clientX, e.clientY, null);
+            });
+            window.addEventListener('mouseup', () => {
+                if (isDragging) onEnd();
+            });
+
+            // Cegah klik membuka lightbox jika pengguna sedang menggeser slide
+            container.addEventListener('click', (e) => {
+                if (hasMoved) {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    hasMoved = false;
+                }
+            }, true);
+        }
+
+        // Jalankan auto-slide, gesture geser, & jeda saat kursor diarahkan ke carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            resetHeroTimer();
+            resetDocTimer();
+            updateAnakDocCarousel();
+            resetAnakDocTimer();
+            updateHafalanDocCarousel();
+            resetHafalanDocTimer();
+
+            attachSwipeGesture('hero-carousel', () => moveHeroSlide(-1), () => moveHeroSlide(1));
+            attachSwipeGesture('doc-carousel', () => moveDocSlide(-1), () => moveDocSlide(1));
+            attachSwipeGesture('anak-doc-carousel', () => moveAnakDocSlide(-1), () => moveAnakDocSlide(1));
+            attachSwipeGesture('hafalan-doc-carousel', () => moveHafalanDocSlide(-1), () => moveHafalanDocSlide(1));
+
+            const heroBox = document.getElementById('hero-carousel');
+            if (heroBox) {
+                heroBox.addEventListener('mouseenter', () => clearInterval(heroAutoTimer));
+                heroBox.addEventListener('mouseleave', resetHeroTimer);
+            }
+
+            const docBox = document.getElementById('doc-carousel');
+            if (docBox) {
+                docBox.addEventListener('mouseenter', () => clearInterval(docAutoTimer));
+                docBox.addEventListener('mouseleave', resetDocTimer);
+            }
+
+            const anakDocBox = document.getElementById('anak-doc-carousel');
+            if (anakDocBox) {
+                anakDocBox.addEventListener('mouseenter', () => clearInterval(anakDocTimer));
+                anakDocBox.addEventListener('mouseleave', resetAnakDocTimer);
+            }
+
+            const hafalanDocBox = document.getElementById('hafalan-doc-carousel');
+            if (hafalanDocBox) {
+                hafalanDocBox.addEventListener('mouseenter', () => clearInterval(hafalanDocTimer));
+                hafalanDocBox.addEventListener('mouseleave', resetHafalanDocTimer);
+            }
+
+            window.addEventListener('resize', () => {
+                updateAnakDocCarousel();
+                updateHafalanDocCarousel();
+            });
+        });
+
         // 1. Navigasi Multi-Halaman Tanpa Reload (SPA)
         function navigateTo(pageId) {
             const targetPage = document.getElementById('page-' + pageId);
@@ -2121,16 +2679,9 @@
                 }
             });
 
-            // Gulir mulus ke bagian atas halaman
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Alias fungsi sesuai kebutuhan navigasi eksternal/internal
-        function switchPage(pageId) {
-            navigateTo(pageId);
-        }
-
-        // Navigasi khusus ke bagian Kurikulum di Beranda
         function navigateToKurikulum() {
             navigateTo('beranda');
             setTimeout(() => {
@@ -2139,21 +2690,43 @@
             }, 100);
         }
 
-        // Lightbox Galeri Dokumentasi
+        // Lightbox Galeri Dokumentasi (Mendukung Foto & Video)
         function openLightbox(imgSrc, captionText) {
+            openMediaLightbox('image', imgSrc, captionText);
+        }
+
+        function openMediaLightbox(type, mediaSrc, captionText) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
             const caption = document.getElementById('lightbox-caption');
-            if (modal && img && caption) {
-                img.src = imgSrc;
-                caption.textContent = captionText || '';
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+            if (!modal || !img || !video || !caption) return;
+
+            if (type === 'video') {
+                img.classList.add('hidden');
+                video.classList.remove('hidden');
+                video.src = mediaSrc;
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+                video.removeAttribute('src');
+                video.classList.add('hidden');
+                img.classList.remove('hidden');
+                img.src = mediaSrc;
             }
+
+            caption.textContent = captionText || '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeLightbox() {
             const modal = document.getElementById('lightbox-modal');
+            const video = document.getElementById('lightbox-video');
+            if (video) {
+                video.pause();
+                video.removeAttribute('src');
+            }
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
